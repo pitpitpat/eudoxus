@@ -1,5 +1,5 @@
 <?php
-class DBhandler {
+class DBHandler {
 
 	private $host = "localhost";
 	private $username = "root";
@@ -9,7 +9,7 @@ class DBhandler {
 
 	public $connection;
 
-	protected function getConnection() {
+	public function getConnection() {
 		$this->connection = null;
 
 		$dsn = "mysql:host=".$this->host.";dbname=".$this->database.";charset=".$this->char_set;

@@ -1,6 +1,4 @@
 <?php
-include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
-
 class Student {
 
 	// Connection instance
@@ -11,17 +9,11 @@ class Student {
 
 	// table columns
 	public $id;
-	public $sku;
-	public $barcode;
+	public $department_id;
 	public $name;
-	public $price;
-	public $unit;
-	public $quantity;
-	public $minquantity;
-	public $createdAt; 
-	public $updatedAt;
-	public $family_id;
-	public $location_id;
+	public $surname;
+	public $code;
+	public $password;
 
 	public function __construct($connection){
 		$this->connection = $connection;
@@ -31,25 +23,35 @@ class Student {
 	public function create(){
 	}
 
-	public function readAll(){
+	public function getAll(){
 		$query = "SELECT * FROM " . $this->table_name;
 
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute();
 
-		return $stmt;
+		$data = [
+			"students" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+		return $data;
 	}
 
-	public function read($id){
+	public function getById($id){
 		$query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$id]);
 
-		return $stmt;
+		$data = [
+			"student" => $stmt->fetch()
+		];
+
+		return $data;
 	}
 
 	public function update(){}
 
 	public function delete(){}
 }
+?>
