@@ -1,28 +1,28 @@
 <?php
 	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
 
-	class Student extends Dbh {
+	class StudentDeclaration extends Dbh {
 
 		public function getAll() {
-			$query = "SELECT * FROM students";
+			$query = "SELECT * FROM StudentDeclaration";
 
 			$result = $this->connect()->query($query);
 
-			$students = $result->fetchAll();
+			$studentDeclarations = $result->fetchAll();
 
-			return $students;
+			return $studentDeclarations;
 		}
 
 		public function getById($id) {
-			$query = "SELECT * FROM students WHERE id=:id";
+			$query = "SELECT * FROM StudentDeclaration WHERE id=:id";
 
 			$statement = $this->connect()->prepare($query);
 			$statement->bindParam(':id', $id);
 			$statement->execute();
 
-			$student = $statement->fetch();
+			$studentDeclaration = $statement->fetch();
 
-			return $student;
+			return $studentDeclaration;
 		}
 
 	}
