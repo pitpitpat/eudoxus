@@ -7,9 +7,9 @@ class DBHandler {
 	private $database = "sdi1500011";
 	private $char_set = "utf8";
 
-	protected $connection;
+	public $connection;
 
-	protected function getConnection() {
+	public function getConnection() {
 		$this->connection = null;
 
 		$dsn = "mysql:host=".$this->host.";dbname=".$this->database.";charset=".$this->char_set;
