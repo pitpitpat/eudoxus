@@ -18,11 +18,32 @@ class SecretaryDeclaration {
 		$this->connection = $connection;
 	}
 
+    public function create($relation){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (timestamp, secretary_id, code) " . 
+        " VALUES (?, ?, ?)";
 
-	public function create(){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$relation->timestamp,
+            $relation->secretary_id,
+            $relation->code]);
+
+        return $this->connection->lastInsertId;
     }
     
-    public function update(){}
+    public function update($relation){
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "timestamp=?, secretary_id=?, code=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$relation->timestamp,
+            $relation->secretary_id,
+            $relation->code,
+            $relation->id]);
+
+    }
 
     public function delete(){}
 

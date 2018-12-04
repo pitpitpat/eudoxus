@@ -20,11 +20,36 @@ class Secretary {
 		$this->connection = $connection;
 	}
 
+	public function create($newSecretary){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (department_id, name, surname, username, password) " . 
+        " VALUES (?, ?, ?, ?, ?)";
 
-	public function create(){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$newSecretary->department_id,
+            $newSecretary->name,
+            $newSecretary->surname,
+            $newSecretary->username,
+            $newSecretary->password]);
+
+        return $this->connection->lastInsertId;
     }
     
-    public function update(){}
+    public function update($secretary){
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "department_id=?, name=?, surname=?, username=?, password=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$secretary->department_id,
+            $secretary->name,
+            $secretary->surname,
+            $secretary->username,
+            $secretary->password,
+            $secretary->id]);
+
+    }
 
     public function delete(){}
 

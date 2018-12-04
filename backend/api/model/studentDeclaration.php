@@ -18,13 +18,39 @@ class StudentDeclaration {
 		$this->connection = $connection;
 	}
 
+    public function create($relation){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (timestamp, student_id, code) " . 
+        " VALUES (?, ?, ?)";
 
-	public function create(){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$relation->timestamp,
+            $relation->student_id,
+            $relation->code]);
+
+        return $this->connection->lastInsertId;
     }
     
-    public function update(){}
+    public function update($relation){
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "timestamp=?, student_id=?, code=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$relation->timestamp,
+            $relation->student_id,
+            $relation->code,
+            $relation->id]);
 
-    public function delete(){}
+    }
+
+    public function delete($id){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$id]);
+    }
 
    public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
