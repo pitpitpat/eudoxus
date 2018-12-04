@@ -1,29 +1,56 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
+class StudentDeclaration {
 
-	class StudentDeclaration extends Dbh {
+    // Connection instance
+	private $connection;
 
-		public function getAll() {
-			$query = "SELECT * FROM StudentDeclaration";
+	// table name
+    private $table_name = "studentDeclaration";
+    //associated table names
+    
+	// table columns
+	public $id;
+    public $timestamp;
+    public $student_id;
+    public $code;
 
-			$result = $this->connect()->query($query);
-
-			$studentDeclarations = $result->fetchAll();
-
-			return $studentDeclarations;
-		}
-
-		public function getById($id) {
-			$query = "SELECT * FROM StudentDeclaration WHERE id=:id";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':id', $id);
-			$statement->execute();
-
-			$studentDeclaration = $statement->fetch();
-
-			return $studentDeclaration;
-		}
-
+	public function __construct($connection){
+		$this->connection = $connection;
 	}
+
+
+	public function create(){
+    }
+    
+    public function update(){}
+
+    public function delete(){}
+
+   public function getAll() {
+        $query = "SELECT * FROM " . $this->table_name;
+
+        $result = $this->connect()->query($query);
+
+        $data = [
+			"declarations" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getById($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$id]);
+
+		$data = [
+			"declaration" => $stmt->fetch()
+        ];
+        
+        return $data;
+    }
+
+}
 ?>
