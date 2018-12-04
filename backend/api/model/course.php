@@ -20,7 +20,30 @@ class Course {
 
 
 	public function create(){
-	}
+        $query = "INSERT INTO " . $this->table_name . 
+        " (name, professor) " . 
+        " VALUES (?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$newBook->name,
+            $newBook->professor]);
+
+        return $this->connection->lastInsertId;
+    }
+    
+    public function update($course) {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "name=?, professor=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$course->name,
+            $course->professor,
+            $course->id]);
+    }
+
+    public function delete(){}
     
     public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;

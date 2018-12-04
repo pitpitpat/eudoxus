@@ -23,12 +23,42 @@ class Book {
 	}
 
 
-	public function create(){
+	public function create($newBook) {
+        $query = "INSERT INTO " . $this->table_name . 
+        " (course_id, name, code, author, pages) " . 
+        " VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$newBook->course_id,
+            $newBook->name,
+            $newBook->code,
+            $newBook->author,
+            $newBook->pages]);
+
+        return $this->connection->lastInsertId;
     }
     
-    public function update(){}
+    public function update($book) {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "course_id=?, name=?, code=?, author=?, pages=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$book->course_id,
+            $book->name,
+            $book->code,
+            $book->author,
+            $book->pages,
+            $book->id]);
+    }
 
-    public function delete(){}
+    public function delete($id){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$id]);
+    }
 
     public function getAll(){
 		$query = "SELECT * FROM " . $this->table_name;

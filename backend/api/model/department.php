@@ -16,11 +16,26 @@ class Department {
 		$this->connection = $connection;
 	}
 
+    public function create($department){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (name) " . 
+        " VALUES (?)";
 
-	public function create(){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$department->name]);
+
+        return $this->connection->lastInsertId;
     }
     
-    public function update(){}
+    public function update($department) {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "name=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$department->name,
+            $department->id]);
+    }
 
     public function delete(){}
 
