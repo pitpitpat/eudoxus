@@ -1,29 +1,69 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
+class Department {
 
-	class Department extends Dbh {
+    // Connection instance
+	private $connection;
 
-		public function getAll() {
-			$query = "SELECT * FROM departments";
+	// table name
+    private $table_name = "departments";
+    //associated table names
+    
+	// table columns
+	public $id;
+	public $name;
 
-			$result = $this->connect()->query($query);
-
-			$departments = $result->fetchAll();
-
-			return $departments;
-		}
-
-		public function getById($id) {
-			$query = "SELECT * FROM departments WHERE id=:id";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':id', $id);
-			$statement->execute();
-
-			$department = $statement->fetch();
-
-			return $department;
-		}
-
+	public function __construct($connection){
+		$this->connection = $connection;
 	}
+
+    public function create($department){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (name) " . 
+        " VALUES (?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$department->name]);
+
+        return $this->connection->lastInsertId;
+    }
+    
+    public function update($department) {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "name=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$department->name,
+            $department->id]);
+    }
+
+    public function delete(){}
+
+   public function getAll() {
+        $query = "SELECT * FROM " . $this->table_name;
+
+        $result = $this->connect()->query($query);
+
+        $data = [
+			"departments" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getById($id) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$id]);
+
+		$data = [
+			"department" => $stmt->fetch()
+        ];
+        
+        return $data;
+    }
+
+}
 ?>
