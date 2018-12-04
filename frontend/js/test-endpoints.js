@@ -21,7 +21,7 @@ $.ajax({
 });
 
 // POST request
-var endpoint = "/student/read.php";
+var endpoint = "/student/read.php";	// <== Change that
 var url = api + endpoint;
 var data = {
 	name: "panagiotis",
