@@ -1,9 +1,16 @@
-/*width of the 6 cards*/
-.w-30 {
-    width: 32.6%;
+/* ------------ GENERAL ------------ */
+body {
+	background-color: #E0E0E0;
 }
 
-.vertical-align {
-    position: relative;
-    top: 25%;
+.home-users {
+	height: 9rem;
+}
+
+.fs-2 {
+	font-size: 1.2rem;
+}
+
+.users-card {
+	padding: 5.5rem;
 }
