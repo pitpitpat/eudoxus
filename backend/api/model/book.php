@@ -1,53 +1,121 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
+class Book {
 
-	class Book extends Dbh {
+    // Connection instance
+	private $connection;
 
-		public function getAll() {
-			$query = "SELECT * FROM books";
+	// table name
+    private $table_name = "books";
+    //associated table names
+    private $secretary_declaration_books_table_name = "SecretaryDeclarationBooks";
+    private $student_declaration_books_table_name = "StudentDeclarationBooks";
 
-			$result = $this->connect()->query($query);
+	// table columns
+	public $id;
+	public $course_id;
+	public $name;
+	public $code;
+	public $author;
+	public $pages;
 
-			$books = $result->fetchAll();
-
-			return $books;
-		}
-
-		public function getById($id) {
-			$query = "SELECT * FROM books WHERE id=:id";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':id', $id);
-			$statement->execute();
-
-			$book = $statement->fetch();
-
-			return $book;
-        }
-        
-        public function getByStudentDeclarationId($declarationId) {
-            $query = "SELECT b.* FROM books b, StudentDeclarationsBooks sd WHERE sd.declaration_id=:declarationId";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':declarationId', $declarationId);
-			$statement->execute();
-
-			$books = $statement->fetchAll();
-
-			return $books;
-        }
-
-        public function getBySecretaryDeclarationId($declarationId) {
-            $query = "SELECT b.* FROM books b, SecretaryDeclarationsBooks sd WHERE sd.declaration_id=:declarationId";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':declarationId', $declarationId);
-			$statement->execute();
-
-			$books = $statement->fetchAll();
-
-			return $books;
-        }
-
+	public function __construct($connection){
+		$this->connection = $connection;
 	}
+
+
+	public function create() {
+        $query = "INSERT INTO " . $this->table_name . 
+        " (course_id, name, code, author, pages) " . 
+        " VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->course_id,
+            $this->name,
+            $this->code,
+            $this->author,
+            $this->pages]);
+
+        return $this->connection->lastInsertId;
+    }
+    
+    public function update() {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "course_id=?, name=?, code=?, author=?, pages=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->course_id,
+            $this->name,
+            $this->code,
+            $this->author,
+            $this->pages,
+            $this->id]);
+    }
+
+    public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
+
+    public function getAll(){
+		$query = "SELECT * FROM " . $this->table_name;
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute();
+
+		$data = [
+			"books" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+		return $data;
+	}
+
+    public function getById() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->id]);
+
+		$data = [
+			"book" => $stmt->fetch()
+		];
+
+		return $data;
+    }
+    
+    public function getByStudentDeclarationId($declarationId) {
+        $query = "SELECT b.* FROM " . $this->table_name . " b, " .
+                  $this->student_declaration_books_table_name . " sd WHERE sd.declaration_id=?";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$declarationId]);
+
+        $data = [
+			"books" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getBySecretaryDeclarationId($declarationId) {
+        $query = "SELECT b.* FROM " . $this->table_name . " b, " .
+                  $this->secretary_declaration_books_table_name . " sd WHERE sd.declaration_id=?";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$declarationId]);
+
+        $data = [
+			"books" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+}
 ?>

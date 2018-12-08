@@ -1,29 +1,82 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
+class SecretaryDeclaration {
 
-	class SecretaryDeclaration extends Dbh {
+    // Connection instance
+	private $connection;
 
-		public function getAll() {
-			$query = "SELECT * FROM SecretaryDeclaration";
+	// table name
+    private $table_name = "secretaryDeclaration";
+    //associated table names
+    
+	// table columns
+	public $id;
+    public $timestamp;
+    public $secretary_id;
+    public $code;
 
-			$result = $this->connect()->query($query);
-
-			$secretaryDeclarations = $result->fetchAll();
-
-			return $secretaryDeclarations;
-		}
-
-		public function getById($id) {
-			$query = "SELECT * FROM SecretaryDeclaration WHERE id=:id";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':id', $id);
-			$statement->execute();
-
-			$secretaryDeclaration = $statement->fetch();
-
-			return $secretaryDeclaration;
-		}
-
+	public function __construct($connection){
+		$this->connection = $connection;
 	}
+
+    public function create(){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (timestamp, secretary_id, code) " . 
+        " VALUES (?, ?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->timestamp,
+            $this->secretary_id,
+            $this->code]);
+
+        return $this->connection->lastInsertId;
+    }
+    
+    public function update(){
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "timestamp=?, secretary_id=?, code=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->timestamp,
+            $this->secretary_id,
+            $this->code,
+            $this->id]);
+
+    }
+
+    public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
+
+   public function getAll() {
+        $query = "SELECT * FROM " . $this->table_name;
+
+        $result = $this->connect()->query($query);
+
+        $data = [
+			"declarations" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getById() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->id]);
+
+		$data = [
+			"declaration" => $stmt->fetch()
+        ];
+        
+        return $data;
+    }
+
+}
 ?>

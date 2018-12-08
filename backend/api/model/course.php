@@ -1,41 +1,93 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'].'/eudoxus/php/model/dbh.php';
+class Course {
 
-	class Course extends Dbh {
+    // Connection instance
+	private $connection;
 
-		public function getAll() {
-			$query = "SELECT * FROM courses";
+	// table name
+    private $table_name = "courses";
+    //associated table names
+    private $department_courses_table_name = "DepartmentsCourses";
 
-			$result = $this->connect()->query($query);
-
-			$courses = $result->fetchAll();
-
-			return $courses;
-		}
-
-		public function getById($id) {
-			$query = "SELECT * FROM courses WHERE id=:id";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':id', $id);
-			$statement->execute();
-
-			$course = $statement->fetch();
-
-			return $course;
-        }
-        
-        public function getByDepartmentId($departmentId) {
-            $query = "SELECT c.* FROM courses c, DepartmentsCourses dc WHERE dc.departmentId=:departmentId";
-
-			$statement = $this->connect()->prepare($query);
-			$statement->bindParam(':departmentId', $departmentId);
-			$statement->execute();
-
-			$courses = $statement->fetchAll();
-
-			return $courses;
-        }
-
+	// table columns
+	public $id;
+	public $name;
+    public $professor;
+    
+    public function __construct($connection){
+		$this->connection = $connection;
 	}
+
+
+	public function create(){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (name, professor) " . 
+        " VALUES (?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->name,
+            $this->professor]);
+
+        return $this->connection->lastInsertId;
+    }
+    
+    public function update() {
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "name=?, professor=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->name,
+            $this->professor,
+            $this->id]);
+    }
+
+    public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
+    
+    public function getAll() {
+        $query = "SELECT * FROM " . $this->table_name;
+
+        $result = $this->connect()->query($query);
+
+        $data = [
+			"courses" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getById() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->id]);
+
+		$data = [
+			"course" => $stmt->fetch()
+		];
+    }
+    
+    public function getByDepartmentId($departmentId) {
+        $query = "SELECT c.* FROM " . $this->table_name . " c, " .
+                  $this->department_courses_table_name . " dc WHERE dc.departmentId=?";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$id]);
+
+        $data = [
+			"courses" => $stmt->fetchAll(),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+}
 ?>

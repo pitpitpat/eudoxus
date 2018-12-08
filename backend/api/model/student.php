@@ -19,11 +19,23 @@ class Student {
 		$this->connection = $connection;
 	}
 
-
 	public function create(){
+        $query = "INSERT INTO " . $this->table_name . 
+        " (department_id, name, surname, code, password) " . 
+        " VALUES (?, ?, ?, ?, ?)";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->department_id,
+            $this->name,
+            $this->surname,
+            $this->code,
+            $this->password]);
+
+        return $this->connection->lastInsertId;
 	}
 
-	public function getAll(){
+	public function getAll() {
 		$query = "SELECT * FROM " . $this->table_name;
 
 		$stmt = $this->connection->prepare($query);
@@ -37,11 +49,11 @@ class Student {
 		return $data;
 	}
 
-	public function getById($id){
+	public function getById(){
 		$query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"student" => $stmt->fetch()
@@ -50,8 +62,26 @@ class Student {
 		return $data;
 	}
 
-	public function update(){}
+	public function update(){
+        $query = "UPDATE " . $this->table_name . " SET " .
+        "department_id=?, name=?, surname=?, code=?, password=? WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute(
+            [$this->department_id,
+            $this->name,
+            $this->surname,
+            $this->code,
+            $this->password,
+            $this->id]);
 
-	public function delete(){}
+    }
+
+	public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
 }
 ?>
