@@ -26,24 +26,29 @@ class Course {
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$newBook->name,
-            $newBook->professor]);
+            [$this->name,
+            $this->professor]);
 
         return $this->connection->lastInsertId;
     }
     
-    public function update($course) {
+    public function update() {
         $query = "UPDATE " . $this->table_name . " SET " .
         "name=?, professor=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$course->name,
-            $course->professor,
-            $course->id]);
+            [$this->name,
+            $this->professor,
+            $this->id]);
     }
 
-    public function delete(){}
+    public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
     
     public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
@@ -58,11 +63,11 @@ class Course {
         return $data;
     }
 
-    public function getById($id) {
+    public function getById() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"course" => $stmt->fetch()

@@ -16,28 +16,33 @@ class Department {
 		$this->connection = $connection;
 	}
 
-    public function create($department){
+    public function create(){
         $query = "INSERT INTO " . $this->table_name . 
         " (name) " . 
         " VALUES (?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$department->name]);
+        $stmt->execute([$this->name]);
 
         return $this->connection->lastInsertId;
     }
     
-    public function update($department) {
+    public function update() {
         $query = "UPDATE " . $this->table_name . " SET " .
         "name=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$department->name,
-            $department->id]);
+            [$this->name,
+            $this->id]);
     }
 
-    public function delete(){}
+    public function delete(){
+        $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
+        
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->id]);
+    }
 
    public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
@@ -52,11 +57,11 @@ class Department {
         return $data;
     }
 
-    public function getById($id) {
+    public function getById() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"department" => $stmt->fetch()

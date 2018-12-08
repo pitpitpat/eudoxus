@@ -1,13 +1,13 @@
 <?php
 include_once '../../library/config/dbhandler.php';
-include_once '../../model/student.php';
+include_once '../../model/book.php';
 
 $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
-$student = new Student($connection);
-$student->id = $_POST['id'];
-$student->delete();
+$book = new Book($connection);
+$book->id = $_POST['id'];
+$book->delete();
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
