@@ -19,18 +19,18 @@ class Student {
 		$this->connection = $connection;
 	}
 
-	public function create($newStudent){
+	public function create(){
         $query = "INSERT INTO " . $this->table_name . 
         " (department_id, name, surname, code, password) " . 
         " VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$newStudent->department_id,
-            $newStudent->name,
-            $newStudent->surname,
-            $newStudent->code,
-            $newStudent->password]);
+            [$this->department_id,
+            $this->name,
+            $this->surname,
+            $this->code,
+            $this->password]);
 
         return $this->connection->lastInsertId;
 	}
@@ -49,11 +49,11 @@ class Student {
 		return $data;
 	}
 
-	public function getById($id){
+	public function getById(){
 		$query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"student" => $stmt->fetch()
@@ -62,26 +62,26 @@ class Student {
 		return $data;
 	}
 
-	public function update($student){
+	public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
         "department_id=?, name=?, surname=?, code=?, password=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$student->department_id,
-            $student->name,
-            $student->surname,
-            $student->code,
-            $student->password,
-            $student->id]);
+            [$this->department_id,
+            $this->name,
+            $this->surname,
+            $this->code,
+            $this->password,
+            $this->id]);
 
     }
 
-	public function delete($id){
+	public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$this->id]);
     }
 }
 ?>
