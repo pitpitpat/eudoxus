@@ -18,38 +18,38 @@ class StudentDeclaration {
 		$this->connection = $connection;
 	}
 
-    public function create($relation){
+    public function create(){
         $query = "INSERT INTO " . $this->table_name . 
         " (timestamp, student_id, code) " . 
         " VALUES (?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$relation->timestamp,
-            $relation->student_id,
-            $relation->code]);
+            [$this->timestamp,
+            $this->student_id,
+            $this->code]);
 
         return $this->connection->lastInsertId;
     }
     
-    public function update($relation){
+    public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
         "timestamp=?, student_id=?, code=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$relation->timestamp,
-            $relation->student_id,
-            $relation->code,
-            $relation->id]);
+            [$this->timestamp,
+            $this->student_id,
+            $this->code,
+            $this->id]);
 
     }
 
-    public function delete($id){
+    public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$this->id]);
     }
 
    public function getAll() {
@@ -65,11 +65,11 @@ class StudentDeclaration {
         return $data;
     }
 
-    public function getById($id) {
+    public function getById() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"declaration" => $stmt->fetch()

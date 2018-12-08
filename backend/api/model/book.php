@@ -23,41 +23,41 @@ class Book {
 	}
 
 
-	public function create($newBook) {
+	public function create() {
         $query = "INSERT INTO " . $this->table_name . 
         " (course_id, name, code, author, pages) " . 
         " VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$newBook->course_id,
-            $newBook->name,
-            $newBook->code,
-            $newBook->author,
-            $newBook->pages]);
+            [$this->course_id,
+            $this->name,
+            $this->code,
+            $this->author,
+            $this->pages]);
 
         return $this->connection->lastInsertId;
     }
     
-    public function update($book) {
+    public function update() {
         $query = "UPDATE " . $this->table_name . " SET " .
         "course_id=?, name=?, code=?, author=?, pages=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$book->course_id,
-            $book->name,
-            $book->code,
-            $book->author,
-            $book->pages,
-            $book->id]);
+            [$this->course_id,
+            $this->name,
+            $this->code,
+            $this->author,
+            $this->pages,
+            $this->id]);
     }
 
-    public function delete($id){
+    public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$this->id]);
     }
 
     public function getAll(){
@@ -74,11 +74,11 @@ class Book {
 		return $data;
 	}
 
-    public function getById($id) {
+    public function getById() {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$id]);
+		$stmt->execute([$this->id]);
 
 		$data = [
 			"book" => $stmt->fetch()

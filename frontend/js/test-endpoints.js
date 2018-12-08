@@ -32,7 +32,7 @@ $.ajax({
 	type: "POST",
 	url: url,
 	data: data,
-	dataType: "json", 
+	dataType: "json",
 	success: function(result, status, xhr) {
 		console.log(result);
 		console.log(status);
