@@ -4,7 +4,11 @@ body {
 }
 
 .home-users {
-	height: 9rem;
+	height: 11rem;
+}
+
+.w-4 {
+	width: 4rem;
 }
 
 .fs-2 {
