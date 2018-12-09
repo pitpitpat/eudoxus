@@ -11,10 +11,27 @@ body {
 	width: 4rem;
 }
 
+.py-7 {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
+.mb-7 {
+	margin-bottom: 5rem;
+}
+
 .fs-2 {
 	font-size: 1.2rem;
 }
 
 .users-card {
 	padding: 5.5rem;
+}
+
+.secondary-nav .active {
+	border-bottom: 2px solid #ff9100;
+}
+
+.secondary-nav .secondary-nav-item:hover {
+	border-bottom: 2px solid #ff9100;
 }
