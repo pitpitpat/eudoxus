@@ -6,7 +6,7 @@ $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
 $book = new Book($connection);
-$book->id = $_GET['id']
+$book->id = $_GET['id'];
 $response = $book->getById();
 
 header("Access-Control-Allow-Origin: *");
