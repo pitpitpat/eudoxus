@@ -1,0 +1,10 @@
+INSERT INTO books (course_id, name, code, author, pages) VALUES (1, 'To kartel', 'ISBN 11524359', 'Don Winslow', 848);
+INSERT INTO courses (name, professor) VALUES ('', '');
+INSERT INTO departments (name) VALUES ('');
+INSERT INTO departmentsCourses (department_id, course_id) VALUES (0, 0);
+INSERT INTO secretaries (department_id, name, surname, username, password) VALUES (0, '', '', '', '');
+INSERT INTO students (department_id, name, surname, code, password) VALUES (0, '', '', '', '');
+INSERT INTO secretaryDeclaration (timestamp, secretary_id, code) VALUES ('', 0, '');
+INSERT INTO secretaryDeclaration (timestamp, student_id, code) VALUES ('', 0, '');
+INSERT INTO secretaryDeclarationsBooks (book_id, declaration_id) VALUES (0, 0);
+INSERT INTO studentDeclarationsBooks (book_id, declaration_id) VALUES (0, 0);
