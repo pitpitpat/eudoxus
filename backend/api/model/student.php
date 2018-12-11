@@ -20,19 +20,24 @@ class Student {
 	}
 
 	public function create(){
-        $query = "INSERT INTO " . $this->table_name . 
+        $query = "INSERT INTO " . $this->table_name .
         " (department_id, name, surname, code, password) " . 
         " VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute(
-            [$this->department_id,
+        $stmt->execute([
+            $this->department_id,
             $this->name,
             $this->surname,
             $this->code,
-            $this->password]);
+            $this->password
+        ]);
 
-        return $this->connection->lastInsertId;
+        $data = [
+			"id" => $this->connection->lastInsertId()
+		];
+
+        return $data;
 	}
 
 	public function getAll() {
@@ -56,7 +61,7 @@ class Student {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"student" => $stmt->fetch()
+			"student" => $stmt->fetchAll()
 		];
 
 		return $data;
@@ -65,7 +70,7 @@ class Student {
 	public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
         "department_id=?, name=?, surname=?, code=?, password=? WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
             [$this->department_id,
@@ -79,7 +84,7 @@ class Student {
 
 	public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
     }
