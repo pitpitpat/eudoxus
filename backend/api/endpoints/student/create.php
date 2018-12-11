@@ -2,15 +2,18 @@
 include_once '../../library/config/dbhandler.php';
 include_once '../../model/student.php';
 
+$postdata = file_get_contents("php://input");
+$request = json_decode($postdata);
+
 $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
 $student = new Student($connection);
-$student->name = $_POST['name'];
-$student->surname = $_POST['surname'];
-$student->department_id = $_POST['department_id'];
-$student->code = $_POST['code'];
-$student->password = $_POST['password'];
+$student->department_id = $request->department_id;
+$student->name = $request->name;
+$student->surname = $request->surname;
+$student->code = $request->code;
+$student->password = $request->password;
 $response = $student->create();
 
 header("Access-Control-Allow-Origin: *");

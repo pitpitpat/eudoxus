@@ -10,12 +10,13 @@ $connection = $dbhandler->getConnection();
 // initialize object
 $student = new Student($connection);
 $student->id = $_GET['id'];
-$response = $student->getAll();
+$response = $student->getById();
 
 // set required headers and response code
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 http_response_code(200);
+
 
 // show students data in json format
 echo json_encode($response);
