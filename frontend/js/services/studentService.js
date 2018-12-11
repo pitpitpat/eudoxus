@@ -15,20 +15,39 @@
 			});
 		};
 
-		studentServiceFactory.getStudent = function() {
-			var endpoint = '/student/read.php';
+		studentServiceFactory.getStudent = function(id) {
+			var endpoint = '/student/readOne.php';
+			var url = $rootScope.eudoxusAPI + endpoint;
+
+			var params = {
+				id: id
+			};
+
+			console.log(params);
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		};
+
+		studentServiceFactory.createStudent = function(student) {
+			var endpoint = '/student/create.php';
 			var url = $rootScope.eudoxusAPI + endpoint;
 
 			var data = {
-				name: "panagiotis",
-				surname: "plytas",
-				age: 21
+				department_id: student.departmentId,
+				name: student.name,
+				surname: student.surname,
+				code: student.code,
+				password: student.password
 			};
 
 			return $http({
 				method: "POST",
 				url: url,
-				dataType: "json",			// Type of data expected from server
+				dataType: "json",	// Type of data expected from server
 				data: data
 			});
 		};

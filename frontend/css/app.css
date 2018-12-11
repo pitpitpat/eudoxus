@@ -35,3 +35,8 @@ body {
 .secondary-nav .secondary-nav-item:hover {
 	border-bottom: 2px solid #ff9100;
 }
+
+#info-secretary .info-main, #info-secretary .info-admin {
+	border: 2px solid grey;
+	border-radius: 1rem;
+}
