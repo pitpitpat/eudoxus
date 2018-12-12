@@ -1,3 +1,12 @@
+INSERT INTO courses (id, name, professor) VALUES (1, 'Βυζαντινολογία', 'Κωνσταντίνος Κατακουζινός');
+INSERT INTO courses (id, name, professor) VALUES (2, 'Ευρωπαϊκές Σχέσεις', 'Ρωμανός Χριστοφόρου');
+INSERT INTO courses (id, name, professor) VALUES (3, 'Διδακτική της Φιλολογίας', 'Ελένη Βλαχάκη');
+INSERT INTO courses (id, name, professor) VALUES (4, 'Λατινικά Ι', 'Εμμανουήλ Σφακιανός');
+INSERT INTO courses (id, name, professor) VALUES (5, 'Λειτουργικά Συστήματα', 'Μιχαήλ Καραταράκης');
+INSERT INTO courses (id, name, professor) VALUES (6, 'Εισαγωγή στην Πληροφορική', 'Εμμανουήλ Κορνήλιου');
+INSERT INTO courses (id, name, professor) VALUES (7, 'Εισαγωγή στον Προγραμματισμό', 'Αυγουστής Σφακιανός');
+INSERT INTO courses (id, name, professor) VALUES (8, 'Εφαρμοσμένα Μαθηματικά', 'Κορνήλιος Αυγουστίνος');
+
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (1, 1, 'Εποικοδομητικός Διάλογος στον Σύγχρονο Κόσμο', '0001', 'Κωνσταντίνος Κατακουζινός', 848);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (2, 1, 'Το Αποχετευτικό Σύστημα στο Βυζάντιο', '0002', 'Κωνσταντίνος Κατακουζινός', 338);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (3, 2, 'European Union Part 1', '0003', 'John Witkinson', 338);
@@ -15,16 +24,6 @@ INSERT INTO books (id, course_id, name, code, author, pages) VALUES (14, 7, 'Π�
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (15, 7, 'Η Γλώσσα C', '0015', 'Σωτήρης Μανωλάκος', 538);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (16, 8, 'Διαφορικές Εξισώσεις', '0016', 'Μαρίνος Δίπλας', 738);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (17, 8, 'Μερικές Διαφορικές Εξισώσεις', '0017', 'Απόστολος Φέρτης', 838);
-
-
-INSERT INTO courses (id, name, professor) VALUES (1, 'Βυζαντινολογία', 'Κωνσταντίνος Κατακουζινός');
-INSERT INTO courses (id, name, professor) VALUES (2, 'Ευρωπαϊκές Σχέσεις', 'Ρωμανός Χριστοφόρου');
-INSERT INTO courses (id, name, professor) VALUES (3, 'Διδακτική της Φιλολογίας', 'Ελένη Βλαχάκη');
-INSERT INTO courses (id, name, professor) VALUES (4, 'Λατινικά Ι', 'Εμμανουήλ Σφακιανός');
-INSERT INTO courses (id, name, professor) VALUES (5, 'Λειτουργικά Συστήματα', 'Μιχαήλ Καραταράκης');
-INSERT INTO courses (id, name, professor) VALUES (6, 'Εισαγωγή στην Πληροφορική', 'Εμμανουήλ Κορνήλιου');
-INSERT INTO courses (id, name, professor) VALUES (7, 'Εισαγωγή στον Προγραμματισμό', 'Αυγουστής Σφακιανός');
-INSERT INTO courses (id, name, professor) VALUES (8, 'Εφαρμοσμένα Μαθηματικά', 'Κορνήλιος Αυγουστίνος');
 
 INSERT INTO departments (id, name) VALUES (1, 'Τμήμα Φιλολογίας');
 INSERT INTO departments (id, name) VALUES (2, 'Τμήμα Βιολογίας');
