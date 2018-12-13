@@ -1,13 +1,13 @@
 <?php
 include_once '../../library/config/dbhandler.php';
-include_once '../../model/book.php';
+include_once '../../model/studentDeclarationsBooks.php';
 
 $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
-$book = new Book($connection);
-$book->id = $_GET['id'];
-$response = $book->getById();
+$studentDeclarationsBooks = new StudentDeclarationsBooks($connection);
+$studentDeclarationsBooks->id = $_GET['id'];
+$response = $studentDeclarationsBooks->getById();
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
