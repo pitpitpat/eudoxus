@@ -55,7 +55,7 @@ class SecretaryDeclarationsBooks {
         $result = $this->connect()->query($query);
 
         $data = [
-			"secretaryDeclarationsBooks" => $stmt->fetchAll(),
+			"secretaryDeclarationsBooks" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 

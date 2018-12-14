@@ -50,7 +50,7 @@ class Department {
         $result = $this->connect()->query($query);
 
         $data = [
-			"departments" => $stmt->fetchAll(),
+			"departments" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 

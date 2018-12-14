@@ -47,7 +47,7 @@ class Student {
 		$stmt->execute();
 
 		$data = [
-			"students" => $stmt->fetchAll(),
+			"students" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -61,7 +61,7 @@ class Student {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"student" => $stmt->fetchAll()
+			"student" => $stmt->fetchAll(PDO::FETCH_CLASS)
 		];
 
 		return $data;
@@ -87,6 +87,23 @@ class Student {
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
+    }
+
+    public function login() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE code=? AND password=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->code, $this->password]);
+
+        $data = [false];
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "student" => $studentFetched
+            ];
+        }
+
+		return $data;
     }
 }
 ?>
