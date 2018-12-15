@@ -64,7 +64,7 @@ class Secretary {
         $result = $this->connect()->query($query);
 
         $data = [
-			"secretaries" => $stmt->fetchAll(),
+			"secretaries" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -77,11 +77,32 @@ class Secretary {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"secretary" => $stmt->fetch()
-        ];
+		$data = [false];
+
+        if (($secretaryFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "secretary" => $secretaryFetched
+            ];
+        }
         
         return $data;
+    }
+
+    public function login() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username=? AND password=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->username, $this->password]);
+
+        $data = [false];
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "secretary" => $studentFetched
+            ];
+        }
+
+		return $data;
     }
 
 }

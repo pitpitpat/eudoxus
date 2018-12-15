@@ -67,7 +67,7 @@ class Book {
 		$stmt->execute();
 
 		$data = [
-			"books" => $stmt->fetchAll(),
+			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -95,7 +95,7 @@ class Book {
         $stmt->execute([$declarationId]);
 
         $data = [
-			"books" => $stmt->fetchAll(),
+			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -110,7 +110,7 @@ class Book {
         $stmt->execute([$declarationId]);
 
         $data = [
-			"books" => $stmt->fetchAll(),
+			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 

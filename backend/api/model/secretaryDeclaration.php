@@ -58,7 +58,7 @@ class SecretaryDeclaration {
         $result = $this->connect()->query($query);
 
         $data = [
-			"declarations" => $stmt->fetchAll(),
+			"declarations" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 

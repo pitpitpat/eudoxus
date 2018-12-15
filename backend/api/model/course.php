@@ -56,7 +56,7 @@ class Course {
         $result = $this->connect()->query($query);
 
         $data = [
-			"courses" => $stmt->fetchAll(),
+			"courses" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -82,7 +82,7 @@ class Course {
         $stmt->execute([$id]);
 
         $data = [
-			"courses" => $stmt->fetchAll(),
+			"courses" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
