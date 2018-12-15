@@ -60,10 +60,14 @@ class Student {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"student" => $stmt->fetchAll(PDO::FETCH_CLASS)
-		];
+        $data = [false];
 
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "student" => $studentFetched
+            ];
+        }
+        
 		return $data;
 	}
 

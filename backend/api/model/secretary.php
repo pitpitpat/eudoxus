@@ -77,9 +77,13 @@ class Secretary {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"secretary" => $stmt->fetch()
-        ];
+		$data = [false];
+
+        if (($secretaryFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "secretary" => $secretaryFetched
+            ];
+        }
         
         return $data;
     }
@@ -94,7 +98,7 @@ class Secretary {
 
         if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
             $data = [
-                "student" => $studentFetched
+                "secretary" => $studentFetched
             ];
         }
 

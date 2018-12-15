@@ -1,6 +1,6 @@
 <?php
 include_once '../../library/config/dbhandler.php';
-include_once '../../model/student.php';
+include_once '../../model/secretary.php';
 include_once '../../config/config.php';
 require __DIR__ . '/../../../../vendor/autoload.php';
 use \Firebase\JWT\JWT;
@@ -17,15 +17,15 @@ $connection = $dbhandler->getConnection();
 $decodedToken = JWT::decode($token, $key, array('HS256'));
 $tokenId = intval($decodedToken->data->id);
 $tokenType = $decodedToken->data->type;
-if ($tokenType != "student") {
+if ($tokenType != "secretary") {
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     http_response_code(401);
 } else {
     // initialize object
-    $student = new Student($connection);
-    $student->id = $tokenId;
-    $response = $student->getById();
+    $secretary = new Secretary($connection);
+    $secretary->id = $tokenId;
+    $response = $secretary->getById();
     
     if ($response == [false]) {
         header("Access-Control-Allow-Origin: *");
@@ -39,4 +39,3 @@ if ($tokenType != "student") {
         echo json_encode($response);
     }
 }
-?>
