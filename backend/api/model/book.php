@@ -81,7 +81,7 @@ class Book {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"book" => $stmt->fetch()
+			"book" => $stmt->fetch(PDO::FETCH_OBJ)
 		];
 
 		return $data;
@@ -103,9 +103,8 @@ class Book {
     }
 
     public function getBySecretaryDeclarationId($declarationId) {
-        $query = "SELECT b.* FROM " . $this->table_name . " b, " .
-                  $this->secretary_declaration_books_table_name . " sd WHERE sd.declaration_id=?";
-
+        $query = "SELECT * FROM " . $this->table_name . 
+                 " WHERE id in (SELECT book_id FROM " . $this->secretary_declaration_books_table_name . " WHERE declaration_id=?)";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$declarationId]);
 

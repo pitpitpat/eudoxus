@@ -14,11 +14,21 @@ $student->name = $request->name;
 $student->surname = $request->surname;
 $student->code = $request->code;
 $student->password = $request->password;
-$response = $student->create();
+$student->email = $request['email'];
+$student->phone = $request['phone'];
+if ($student->code == '' || $student->code == NULL
+    || $student->password == '' || $student->password == NULL
+    || $student->existsByCode($student->code) != NULL) {
+        header("Access-Control-Allow-Origin: *");
+        header("Content-Type: application/json; charset=UTF-8");
+        http_response_code(400);
+    }
+else {
+    $response = $student->create();
 
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-http_response_code(200);
-
-echo json_encode($response);
+    header("Access-Control-Allow-Origin: *");
+    header("Content-Type: application/json; charset=UTF-8");
+    http_response_code(200);
+    echo json_encode($response);
+}
 ?>

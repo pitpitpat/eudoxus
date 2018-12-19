@@ -69,7 +69,7 @@ class DepartmentsCourses {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"departmentsCourses" => $stmt->fetch()
+			"departmentsCourses" => $stmt->fetch(PDO::FETCH_OBJ)
         ];
         
         return $data;

@@ -70,16 +70,16 @@ class Course {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"course" => $stmt->fetch()
+			"course" => $stmt->fetch(PDO::FETCH_OBJ)
 		];
     }
     
     public function getByDepartmentId($departmentId) {
-        $query = "SELECT c.* FROM " . $this->table_name . " c, " .
-                  $this->department_courses_table_name . " dc WHERE dc.departmentId=?";
+        $query = "SELECT * FROM " . $this->table_name . 
+                 " WHERE id in (SELECT course_id FROM " . $this->department_courses_table_name . " WHERE department_id=?)";
 
         $stmt = $this->connection->prepare($query);
-        $stmt->execute([$id]);
+        $stmt->execute([$departmentId]);
 
         $data = [
 			"courses" => $stmt->fetchAll(PDO::FETCH_CLASS),
