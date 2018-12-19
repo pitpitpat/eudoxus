@@ -69,7 +69,7 @@ class StudentDeclarationsBooks {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"studentDeclarationsBooks" => $stmt->fetch()
+			"studentDeclarationsBooks" => $stmt->fetch(PDO::FETCH_OBJ)
         ];
         
         return $data;
