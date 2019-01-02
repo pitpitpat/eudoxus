@@ -29,7 +29,7 @@ class StudentDeclaration {
             $this->student_id,
             $this->code]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
@@ -73,6 +73,20 @@ class StudentDeclaration {
 
 		$data = [
 			"declaration" => $stmt->fetch(PDO::FETCH_OBJ)
+        ];
+        
+        return $data;
+    }
+
+    public function getByStudentId() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE student_id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->student_id]);
+
+		$data = [
+            "declaration" => $stmt->fetchAll(PDO::FETCH_CLASS),
+            "count" => $stmt->rowCount()
         ];
         
         return $data;

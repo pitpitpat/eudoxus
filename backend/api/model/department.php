@@ -38,7 +38,7 @@ class Department {
             $this->county,
             $this->semesters]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update() {

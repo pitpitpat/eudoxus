@@ -5,8 +5,8 @@ include_once '../../model/studentDeclaration.php';
 $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
-$studentDeclaration = new SecretaryDeclaration($connection);
-$studentDeclaration->id = $_POST['id'];
+$studentDeclaration = new StudentDeclaration($connection);
+$studentDeclaration->id = $_GET['id'];
 $studentDeclaration->delete();
 
 header("Access-Control-Allow-Origin: *");

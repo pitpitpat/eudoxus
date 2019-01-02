@@ -27,7 +27,7 @@ class DepartmentsCourses {
             [$this->department_id,
             $this->course_id]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
