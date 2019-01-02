@@ -55,7 +55,7 @@ class SecretaryDeclarationsBooks {
         $result = $this->connect()->query($query);
 
         $data = [
-			"secretaryDeclarationsBooks" => $stmt->fetchAll(),
+			"secretaryDeclarationsBooks" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -69,7 +69,7 @@ class SecretaryDeclarationsBooks {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"secretaryDeclarationsBooks" => $stmt->fetch()
+			"secretaryDeclarationsBooks" => $stmt->fetch(PDO::FETCH_OBJ)
         ];
         
         return $data;

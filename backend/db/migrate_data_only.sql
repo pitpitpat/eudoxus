@@ -25,10 +25,13 @@ INSERT INTO books (id, course_id, name, code, author, pages) VALUES (15, 7, 'Η 
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (16, 8, 'Διαφορικές Εξισώσεις', '0016', 'Μαρίνος Δίπλας', 738);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (17, 8, 'Μερικές Διαφορικές Εξισώσεις', '0017', 'Απόστολος Φέρτης', 838);
 
-INSERT INTO departments (id, name) VALUES (1, 'Τμήμα Φιλολογίας');
-INSERT INTO departments (id, name) VALUES (2, 'Τμήμα Βιολογίας');
-INSERT INTO departments (id, name) VALUES (3, 'Τμήμα Πληροφορικής και Τηλεπικοινωνιών');
-INSERT INTO departments (id, name) VALUES (4, 'Τμήμα Ζαχαροπλαστικής');
+INSERT INTO universities (id, name) VALUES (1, 'Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών');
+INSERT INTO universities (id, name) VALUES (2, 'Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης');
+
+INSERT INTO departments (id, name, university_id, address, city, postalcode, county, semesters) VALUES (1, 'Τμήμα Φιλολογίας', 1, '', 'Ζωγράφου', '15784', 'Αττική', 8);
+INSERT INTO departments (id, name, university_id, address, city, postalcode, county, semesters) VALUES (2, 'Τμήμα Βιολογίας', 1, '', 'Θεσσαλονίκη', '15784', 'Θεσσαλονίκη', 8);
+INSERT INTO departments (id, name, university_id, address, city, postalcode, county, semesters) VALUES (3, 'Τμήμα Πληροφορικής και Τηλεπικοινωνιών', 1, '', 'Ζωγράφου', '15784', 'Αττική', 8);
+INSERT INTO departments (id, name, university_id, address, city, postalcode, county, semesters) VALUES (4, 'Τμήμα Ζαχαροπλαστικής', 2, '', 'Θεσσαλονίκη', '15784', 'Θεσσαλονίκη', 8);
 
 INSERT INTO departmentsCourses (id, department_id, course_id) VALUES (1, 1, 1);
 INSERT INTO departmentsCourses (id, department_id, course_id) VALUES (2, 1, 2);
@@ -39,10 +42,10 @@ INSERT INTO departmentsCourses (id, department_id, course_id) VALUES (6, 3, 6);
 INSERT INTO departmentsCourses (id, department_id, course_id) VALUES (7, 3, 7);
 INSERT INTO departmentsCourses (id, department_id, course_id) VALUES (8, 3, 8);
 
-INSERT INTO secretaries (id, department_id, name, surname, username, password) VALUES (1, 1, 'Μαίρη', 'Οικονομοπούλου', 'secretmar', '1234');
-INSERT INTO secretaries (id, department_id, name, surname, username, password) VALUES (2, 1, 'Ερασμία', 'Μανωλάκου', 'secretera', '1234');
-INSERT INTO secretaries (id, department_id, name, surname, username, password) VALUES (3, 3, 'Καίτη', 'Φωτάκη', 'secretkait', '1234');
-INSERT INTO secretaries (id, department_id, name, surname, username, password) VALUES (4, 3, 'Κασσάνδρα', 'Λεωνιδάκου', 'secretkas', '1234');
+INSERT INTO secretaries (id, department_id, name, surname, username, password, email, personalEmail, phone, personalPhone) VALUES (1, 1, 'Μαίρη', 'Οικονομοπούλου', 'secretmar', '1234', 'secretmar@ppp.uoa.gr', 'oikomairi@gmail.com', '2105949183', '6900801433');
+INSERT INTO secretaries (id, department_id, name, surname, username, password, email, personalEmail, phone, personalPhone) VALUES (2, 1, 'Ερασμία', 'Μανωλάκου', 'secretera', '1234', 'secretera@ppp.uoa.gr', 'erasmia@gmail.com', '2109941277', '6912561904');
+INSERT INTO secretaries (id, department_id, name, surname, username, password, email, personalEmail, phone, personalPhone) VALUES (3, 3, 'Καίτη', 'Φωτάκη', 'secretkait', '1234', 'secretkait@di.uoa.gr', 'kaitifot@gmail.com', '2108309411', '6957195744');
+INSERT INTO secretaries (id, department_id, name, surname, username, password, email, personalEmail, phone, personalPhone) VALUES (4, 3, 'Κασσάνδρα', 'Λεωνιδάκου', 'secretkas', '1234', 'secterkas@di.uoa.gr', 'kleonidakou@gmail.com', '2108422198', '6920359910');
 
 INSERT INTO secretaryDeclaration (id, timestamp, secretary_id, code) VALUES (1, '2018-12-12 12:15:00', 1, '0001');
 INSERT INTO secretaryDeclaration (id, timestamp, secretary_id, code) VALUES (2, '2018-11-12 12:25:00', 2, '0002');
@@ -67,23 +70,23 @@ INSERT INTO secretaryDeclarationsBooks (id, book_id, declaration_id) VALUES (15,
 INSERT INTO secretaryDeclarationsBooks (id, book_id, declaration_id) VALUES (16, 16, 4);
 INSERT INTO secretaryDeclarationsBooks (id, book_id, declaration_id) VALUES (17, 17, 4);
 
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (1, 1, 'Ματίνα', 'Πορτοκαλάκη', '111101', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (2, 1, 'Μαρία', 'Πορτοκαλάκη', '111102', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (3, 1, 'Γεωργία', 'Πορτοκαλάκη', '111103', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (4, 1, 'Ειρήνη', 'Πορτοκαλάκη', '111104', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (5, 1, 'Δήμητρα', 'Πορτοκαλάκη', '111105', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (6, 1, 'Αλεξία', 'Πορτοκαλάκη', '111106', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (7, 1, 'Αναστασία', 'Πορτοκαλάκη', '111107', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (8, 1, 'Κορνηλία', 'Πορτοκαλάκη', '111108', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (9, 1, 'Ελένη', 'Πορτοκαλάκη', '111109', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (10, 3, 'Επαμεινώνδας', 'Σαρακάκης', '111501', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (11, 3, 'Γεώργιος', 'Σαρακάκης', '111502', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (12, 3, 'Παναγιώτης', 'Σαρακάκης', '111503', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (13, 3, 'Δημήτριος', 'Σαρακάκης', '111504', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (14, 3, 'Ιωάννης', 'Σαρακάκης', '111505', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (15, 3, 'Σπυρίδων', 'Σαρακάκης', '111506', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (16, 3, 'Συμεών', 'Σαρακάκης', '111507', '1234');
-INSERT INTO students (id, department_id, name, surname, code, password) VALUES (17, 3, 'Λουκάς', 'Σαρακάκης', '111508', '1234');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (1, 1, 'Ματίνα', 'Πορτοκαλάκη', '111101', '1234', 'matport@gmail.com', '6944210587');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (2, 1, 'Μαρία', 'Πορτοκαλάκη', '111102', '1234', 'portomar@gmail.com', '6947120598');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (3, 1, 'Γεωργία', 'Πορτοκαλάκη', '111103', '1234', 'geoport@gmail.com', '6930254158');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (4, 1, 'Ειρήνη', 'Πορτοκαλάκη', '111104', '1234', 'eirport@gmail.com', '6984247851');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (5, 1, 'Δήμητρα', 'Πορτοκαλάκη', '111105', '1234', 'dimport@gmail.com', '6942415188');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (6, 1, 'Αλεξία', 'Πορτοκαλάκη', '111106', '1234', 'portart@gmail.com', '6953226847');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (7, 1, 'Αναστασία', 'Πορτοκαλάκη', '111107', '1234', 'portast@gmail.com', '6900152487');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (8, 1, 'Κορνηλία', 'Πορτοκαλάκη', '111108', '1234', 'kornilia@gmail.com', '6933025487');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (9, 1, 'Ελένη', 'Πορτοκαλάκη', '111109', '1234', 'elport@gmail.com', '6956998425');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (10, 3, 'Επαμεινώνδας', 'Σαρακάκης', '111501', '1234', 'sarakep@gmail.com', '6940257815');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (11, 3, 'Γεώργιος', 'Σαρακάκης', '111502', '1234', 'geosar@gmail.com', '6920365487');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (12, 3, 'Παναγιώτης', 'Σαρακάκης', '111503', '1234', 'sarapanos@gmail.com', '6942587154');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (13, 3, 'Δημήτριος', 'Σαρακάκης', '111504', '1234', 'sarajim@gmail.com', '6903265987');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (14, 3, 'Ιωάννης', 'Σαρακάκης', '111505', '1234', 'sarajohn@gmail.com', '6942587659');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (15, 3, 'Σπυρίδων', 'Σαρακάκης', '111506', '1234', 'spisara@gmail.com', '6955874895');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (16, 3, 'Συμεών', 'Σαρακάκης', '111507', '1234', 'simeon@gmail.com', '6942587962');
+INSERT INTO students (id, department_id, name, surname, code, password, email, phone) VALUES (17, 3, 'Λουκάς', 'Σαρακάκης', '111508', '1234', 'saraluke@gmail.com', '6955369872');
 
 INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (1, '2018-11-16 12:15:00', 1, '123456789012');
 INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (2, '2018-11-15 12:25:00', 2, '123456789013');

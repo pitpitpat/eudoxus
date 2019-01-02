@@ -1,7 +1,7 @@
 <!-- Secondary Navbar -->
 <div class="row secondary-nav justify-content-center bg-white">
 	<div class="col-md-3 secondary-nav-item py-2 text-center active">
-		Δήλωση/Παραλαβή Συγγραμάτων
+		Δήλωση
 	</div>
 	<div class="col-md-3 secondary-nav-item py-2 text-center">
 		Προσφορά Συγγραμμάτων
@@ -11,10 +11,36 @@
 	</div>
 </div>
 
-<div class="row justify-content-center pt-5">
+<div class="row justify-content-center">
+  <div class="col-md-10">
+
+    <ul class="stepper stepper-horizontal p-0 m-0">
+      <li class="step active">
+        <a ng-click="changePage('student')">
+          <span class="circle">1</span>
+          <span class="label">Επιλογή Τμήματος</span>
+        </a>
+      </li>
+      <li class="step">
+        <a ng-click="changePage('student-2')">
+          <span class="circle">2</span>
+          <span class="label">Επιλογή Συγγραμάτων</span>
+        </a>
+      </li>
+      <li class="step warning">
+        <a href="#!">
+          <span class="circle"><i class="fa fa-warning"></i></span>
+          <span class="label">Δήλωση</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>
+<div class="row justify-content-center">
 	<div class="col-md-10">
 		<div class="card">
-			<div class="card-body p-5">
+			<div class="card-body p-4">
 				<div class="container-fluid">
 					<div class="row justify-content-center pt-5 pb-3">
 						<div class="col-md-6">
@@ -43,7 +69,7 @@
 								</div>
 								<div class="row">
 									<div class="col text-center">
-										<button class="btn btn-secondary">
+										<button class="btn btn-indigo" ng-click="changePage('student-2')">
 											Συνέχεια
 										</button>
 									</div>
