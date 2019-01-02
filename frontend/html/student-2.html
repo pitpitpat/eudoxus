@@ -1,7 +1,7 @@
 <!-- Secondary Navbar -->
 <div class="row secondary-nav justify-content-center bg-white">
 	<div class="col-md-3 secondary-nav-item py-2 text-center active">
-		Δήλωση
+		Δήλωση/Παραλαβή Συγγραμάτων
 	</div>
 	<div class="col-md-3 secondary-nav-item py-2 text-center">
 		Προσφορά Συγγραμμάτων
@@ -15,20 +15,20 @@
   <div class="col-md-10">
 
     <ul class="stepper stepper-horizontal p-0 m-0">
-      <li class="step active">
+      <li class="step">
         <a ng-click="changePage('student')">
           <span class="circle">1</span>
           <span class="label">Επιλογή Τμήματος</span>
         </a>
       </li>
-      <li class="step">
+      <li class="step active">
         <a ng-click="changePage('student-2')">
           <span class="circle">2</span>
           <span class="label">Επιλογή Συγγραμάτων</span>
         </a>
       </li>
       <li class="step warning">
-        <a href="#!">
+        <a href>
           <span class="circle"><i class="fa fa-warning"></i></span>
           <span class="label">Δήλωση</span>
         </a>
@@ -44,28 +44,12 @@
 				<div class="container-fluid">
 					<div class="row justify-content-center pt-5 pb-3">
 						<div class="col-md-6">
-							<form name="universityForm">
+							<form name="booksForm">
 								<div class="form-group mb-7">
-									<label>
-										<i class="fas fa-university mr-2"></i>Πανεπιστήμιο
-									</label>
-									<select class="browser-default custom-select">
-										<option selected>Διάλεξε το πανεπιστήμιο σου</option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
-									</select>
+									
 								</div>
 								<div class="form-group mb-7">
-									<label>
-										<i class="fas fa-university mr-2"></i>Τμήμα
-									</label>
-									<select class="browser-default custom-select">
-										<option selected>Διάλεξε το πανεπιστήμιο σου</option>
-										<option value="1">One</option>
-										<option value="2">Two</option>
-										<option value="3">Three</option>
-									</select>
+									
 								</div>
 								<div class="row">
 									<div class="col text-center">
