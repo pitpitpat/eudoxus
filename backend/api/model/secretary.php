@@ -41,7 +41,7 @@ class Secretary {
             $this->phone,
             $this->personalPhone]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){

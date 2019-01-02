@@ -29,7 +29,7 @@ class University {
         $stmt->execute(
             [$this->name]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update() {
