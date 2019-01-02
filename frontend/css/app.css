@@ -24,8 +24,12 @@ body {
 	font-size: 1.2rem;
 }
 
+.fs-0-9 {
+	font-size: 0.9rem;
+}
+
 .users-card {
-	padding: 5.5rem;
+	padding: 4rem 5.5rem 4rem 5.5rem;
 }
 
 .secondary-nav .active {
@@ -36,11 +40,19 @@ body {
 	border-bottom: 2px solid #ff9100;
 }
 
-.nav-item:hover {
-	border-bottom: 2px solid #ff9100;
-}
-
-#info-secretary .info-main, #info-secretary .info-admin {
+#info-secretary .info-main,
+#info-secretary .info-admin {
 	border: 2px solid grey;
 	border-radius: 1rem;
+}
+
+.btn-dark-blue {
+	background-color: #2e3951;
+	color: #ffffff;
+}
+
+.scrollable-card {
+	position: relative;
+	overflow-y: scroll;
+	height: 528px;
 }
