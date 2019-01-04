@@ -29,7 +29,7 @@ class SecretaryDeclaration {
             $this->secretary_id,
             $this->code]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
@@ -58,7 +58,7 @@ class SecretaryDeclaration {
         $result = $this->connect()->query($query);
 
         $data = [
-			"declarations" => $stmt->fetchAll(),
+			"declarations" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -72,7 +72,21 @@ class SecretaryDeclaration {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"declaration" => $stmt->fetch()
+			"declaration" => $stmt->fetch(PDO::FETCH_OBJ)
+        ];
+        
+        return $data;
+    }
+
+    public function getBySecretaryId() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE secretary_id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->secretary_id]);
+
+		$data = [
+            "declaration" => $stmt->fetchAll(PDO::FETCH_CLASS),
+            "count" => $stmt->rowCount()
         ];
         
         return $data;

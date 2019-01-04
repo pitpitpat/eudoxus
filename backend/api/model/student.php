@@ -13,7 +13,9 @@ class Student {
 	public $name;
 	public $surname;
 	public $code;
-	public $password;
+    public $password;
+    public $email;
+    public $phone;
 
 	public function __construct($connection){
 		$this->connection = $connection;
@@ -21,8 +23,8 @@ class Student {
 
 	public function create(){
         $query = "INSERT INTO " . $this->table_name .
-        " (department_id, name, surname, code, password) " . 
-        " VALUES (?, ?, ?, ?, ?)";
+        " (department_id, name, surname, code, password, email, phone) " . 
+        " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute([
@@ -30,7 +32,9 @@ class Student {
             $this->name,
             $this->surname,
             $this->code,
-            $this->password
+            $this->password,
+            $this->email,
+            $this->phone
         ]);
 
         $data = [
@@ -47,7 +51,7 @@ class Student {
 		$stmt->execute();
 
 		$data = [
-			"students" => $stmt->fetchAll(),
+			"students" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -60,16 +64,20 @@ class Student {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"student" => $stmt->fetchAll()
-		];
+        $data = [false];
 
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "student" => $studentFetched
+            ];
+        }
+        
 		return $data;
 	}
 
 	public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
-        "department_id=?, name=?, surname=?, code=?, password=? WHERE id=?";
+        "department_id=?, name=?, surname=?, code=?, password=?, email=?, phone=? WHERE id=?";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
@@ -78,6 +86,8 @@ class Student {
             $this->surname,
             $this->code,
             $this->password,
+            $this->email,
+            $this->phone,
             $this->id]);
 
     }
@@ -87,6 +97,38 @@ class Student {
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
+    }
+
+    public function login() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE code=? AND password=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->code, $this->password]);
+
+        $data = [false];
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "student" => $studentFetched
+            ];
+        }
+
+		return $data;
+    }
+
+    public function existsByCode($code) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE code=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->id]);
+
+        $data = NULL;
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [true];
+        }
+        
+		return $data;
     }
 }
 ?>

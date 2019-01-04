@@ -15,6 +15,10 @@ class Secretary {
     public $surname;
     public $username;
     public $password;
+    public $email;
+    public $personalEmail;
+    public $phone;
+    public $personalPhone;
 
 	public function __construct($connection){
 		$this->connection = $connection;
@@ -22,8 +26,8 @@ class Secretary {
 
 	public function create(){
         $query = "INSERT INTO " . $this->table_name . 
-        " (department_id, name, surname, username, password) " . 
-        " VALUES (?, ?, ?, ?, ?)";
+        " (department_id, name, surname, username, password, email, personalEmail, phone, personalPhone) " . 
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
@@ -31,14 +35,18 @@ class Secretary {
             $this->name,
             $this->surname,
             $this->username,
-            $this->password]);
+            $this->password,
+            $this->email,
+            $this->personalEmail,
+            $this->phone,
+            $this->personalPhone]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
-        "department_id=?, name=?, surname=?, username=?, password=? WHERE id=?";
+        "department_id=?, name=?, surname=?, username=?, password=?, email=?, personalEmail=?, phone=?, personalPhone=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
@@ -47,6 +55,10 @@ class Secretary {
             $this->surname,
             $this->username,
             $this->password,
+            $this->email,
+            $this->personalEmail,
+            $this->phone,
+            $this->personalPhone,
             $this->id]);
 
     }
@@ -64,7 +76,7 @@ class Secretary {
         $result = $this->connect()->query($query);
 
         $data = [
-			"secretaries" => $stmt->fetchAll(),
+			"secretaries" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -77,11 +89,47 @@ class Secretary {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"secretary" => $stmt->fetch()
-        ];
+		$data = [false];
+
+        if (($secretaryFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "secretary" => $secretaryFetched
+            ];
+        }
         
         return $data;
+    }
+
+    public function login() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username=? AND password=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->username, $this->password]);
+
+        $data = [false];
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [
+                "secretary" => $studentFetched
+            ];
+        }
+
+		return $data;
+    }
+
+    public function existsByUsername($username) {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE username=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->id]);
+
+        $data = NULL;
+
+        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = [true];
+        }
+        
+		return $data;
     }
 
 }

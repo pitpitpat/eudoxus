@@ -6,7 +6,7 @@ $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
 $secretaryDeclaration = new SecretaryDeclaration($connection);
-$secretaryDeclaration->id = $_POST['id'];
+$secretaryDeclaration->id = $_GET['id'];
 $secretaryDeclaration->delete();
 
 header("Access-Control-Allow-Origin: *");
