@@ -7,8 +7,9 @@ class Book {
 	// table name
     private $table_name = "books";
     //associated table names
-    private $secretary_declaration_books_table_name = "SecretaryDeclarationBooks";
-    private $student_declaration_books_table_name = "StudentDeclarationBooks";
+    private $secretary_declaration_books_table_name = "SecretaryDeclarationsBooks";
+    private $student_declaration_books_table_name = "StudentDeclarationsBooks";
+    private $course_table_name = "Courses";
 
 	// table columns
 	public $id;
@@ -36,7 +37,7 @@ class Book {
             $this->author,
             $this->pages]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update() {
@@ -88,8 +89,8 @@ class Book {
     }
     
     public function getByStudentDeclarationId($declarationId) {
-        $query = "SELECT b.* FROM " . $this->table_name . " b, " .
-                  $this->student_declaration_books_table_name . " sd WHERE sd.declaration_id=?";
+        $query = "SELECT * FROM " . $this->table_name . 
+        " WHERE id in (SELECT book_id FROM " . $this->student_declaration_books_table_name . " WHERE declaration_id=?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$declarationId]);
@@ -107,6 +108,20 @@ class Book {
                  " WHERE id in (SELECT book_id FROM " . $this->secretary_declaration_books_table_name . " WHERE declaration_id=?)";
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$declarationId]);
+
+        $data = [
+			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
+    public function getByCourseId() {
+        $query = "SELECT * FROM " . $this->table_name . 
+                 " WHERE course_id = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->course_id]);
 
         $data = [
 			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),

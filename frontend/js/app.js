@@ -1,32 +1,69 @@
 (function() {
 
-	angular.module("eudoxusApp", [])
-	.run(function ($rootScope, generalUtility, studentService) {
+	angular.module("eudoxusApp", ['ngRoute'])
+	.config(function($httpProvider, $routeProvider) {
+
+		/* ================= Routing ================= */
+		$routeProvider
+		.when("/home", {
+			templateUrl: 'html/home.html',
+			controller: 'homeCtrl'
+		})
+		.when("/student/home", {
+			templateUrl: 'html/student-home.html',
+			controller: 'studentHomeCtrl'
+		})
+		.when("/student/declaration/1", {
+			templateUrl: 'html/student-declaration-1.html',
+			controller: 'studentDeclaration1Ctrl'
+		})
+		.when("/student/declaration/2", {
+			templateUrl: 'html/student-declaration-2.html',
+			controller: 'studentDeclaration2Ctrl'
+		})
+		.when("/student/declaration/3", {
+			templateUrl: 'html/student-declaration-3.html',
+			controller: 'studentDeclaration3Ctrl'
+		})
+		.when("/student/book/offer", {
+			templateUrl: 'html/student-book-offer.html',
+			controller: 'studentBookOfferCtrl'
+		})
+		.when("/student/declaration/log", {
+			templateUrl: 'html/student-declaration-log.html',
+			controller: 'studentDeclarationLogCtrl'
+		})
+		.when("/secretary/home", {
+			templateUrl: 'html/secretary-home.html',
+			controller: 'secretaryHomeCtrl'
+		})
+		.when("/login", {
+			templateUrl: 'html/login.html',
+			controller: 'loginCtrl'
+		})
+		.when("/register", {
+			templateUrl: 'html/register.html',
+			controller: 'registerCtrl'
+		})
+		.when("/", {
+			redirectTo: '/home'
+		})
+		.otherwise({
+			redirectTo: '/home'
+		});
+
+	})
+	.run(function ($rootScope, generalUtility, generalService, studentService) {
 
 		generalUtility.initApp();
 
-		$rootScope.changePage = generalUtility.changePage;
+		$rootScope.logout = generalService.logout;
+		$rootScope.goToLogin = generalUtility.goToLogin;
 
-		studentService.getAllStudents().then(function(response) {
-			console.log(response.data);
-		});
-
-		studentService.getStudent(3).then(function(response) {
-			console.log(response.data);
-		});
-
-
-		// var student = {
-		// 	departmentId: 2,
-		// 	name: "eirini",
-		// 	surname: "arapkoule",
-		// 	code: "bbbbbb",
-		// 	password: "cccccccc"
-		// };
-
-		// studentService.createStudent(student).then(function(response) {
-		// 	console.log(response.data);
-		// });
+		if (localStorage.eudoxusJWT) {
+			generalUtility.setJWT(localStorage.eudoxusJWT);
+			generalUtility.getUser(false);
+		}
 
 	});
 

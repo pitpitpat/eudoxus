@@ -29,7 +29,7 @@ class Course {
             [$this->name,
             $this->professor]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update() {
