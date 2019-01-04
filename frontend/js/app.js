@@ -1,7 +1,7 @@
 (function() {
 
 	angular.module("eudoxusApp", ['ngRoute'])
-	.config(function($routeProvider) {
+	.config(function($httpProvider, $routeProvider) {
 
 		/* ================= Routing ================= */
 		$routeProvider
@@ -37,6 +37,14 @@
 			templateUrl: 'html/secretary-home.html',
 			controller: 'secretaryHomeCtrl'
 		})
+		.when("/login", {
+			templateUrl: 'html/login.html',
+			controller: 'loginCtrl'
+		})
+		.when("/register", {
+			templateUrl: 'html/register.html',
+			controller: 'registerCtrl'
+		})
 		.when("/", {
 			redirectTo: '/home'
 		})
@@ -45,9 +53,17 @@
 		});
 
 	})
-	.run(function ($rootScope, generalUtility) {
+	.run(function ($rootScope, generalUtility, generalService, studentService) {
 
 		generalUtility.initApp();
+
+		$rootScope.logout = generalService.logout;
+		$rootScope.goToLogin = generalUtility.goToLogin;
+
+		if (localStorage.eudoxusJWT) {
+			generalUtility.setJWT(localStorage.eudoxusJWT);
+			generalUtility.getUser(false);
+		}
 
 	});
 

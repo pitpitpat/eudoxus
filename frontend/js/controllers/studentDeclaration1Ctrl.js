@@ -7,7 +7,6 @@
 
 		console.log("student-1");
 
-
 	});
 
 })();

@@ -13,43 +13,94 @@
 
 <div class="row justify-content-center pt-5">
 	<div class="col-md-6">
-		<div class="card">
+		<div class="card h-100">
 			<div class="card-header text-center">
 				Στοιχεία Φοιτητή
 			</div>
 			<div class="card-body p-4">
 				<div class="container-fluid">
-					<div class="row mb-4">
-						<div class="col fs-2">
-							Ονομα:
+
+					<div ng-if="user" class="row pt-3">
+						<div class="col">
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Όνομα:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.name }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Επίθετο:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.surname }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Αριθμός Μητρώου:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.code }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Πανεπιστήμιο:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.university.name }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Τμήμα:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.department.name }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Πόλη:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.department.city }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Email:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.email }}
+								</div>
+							</div>
+							<div class="row text-grey mb-4">
+								<div class="col-6 fs-2">
+									Τηλέφωνο:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.phone }}
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="row mb-4">
-						<div class="col fs-2">
-							Επιθετο:
+
+					<div ng-if="!user" class="row mt-5">
+						<div class="col fs-2 text-center">
+							Παρακαλω συνδεσου για να δεις τα στοιχεια σου
 						</div>
 					</div>
-					<div class="row mb-4">
-						<div class="col fs-2">
-							Αριθμος Μητρωου:
-						</div>
-					</div>
-					<div class="row mb-4">
-						<div class="col fs-2">
-							Email:
-						</div>
-					</div>
-					<div class="row mb-4">
-						<div class="col fs-2">
-							Τηλεφωνο:
-						</div>
-					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="card">
+		<div class="card h-100">
 			<div class="card-header text-center">
 				Επιλεξτε μια απο τις παρακατω ενεργειες
 			</div>
@@ -59,7 +110,7 @@
 						<div class="col-md-10">
 							<a href="#!/student/declaration/1">
 								<button class="btn w-100 blue darken-3 waves-effect waves-light student-options">
-									<span class="fs-2 text-white">ΔΗΛΩΣΗ</span>
+									<span class="fs-2 text-white"><i class="far fa-file-alt fs-2 mr-2"></i>ΔΗΛΩΣΗ</span>
 								</button>
 							</a>
 						</div>
@@ -68,7 +119,7 @@
 						<div class="col-md-10">
 							<a href="#!/student/books/offer">
 								<button class="btn w-100 cyan darken-3 waves-effect waves-light student-options">
-									<span class="fs-2 text-white">ΠΡΟΣΦΟΡΑ ΣΥΓΓΡΑΜΜΑΤΩΝ</span>
+									<span class="fs-2 text-white"><i class="fas fa-book fs-2 mr-2"></i>ΠΡΟΣΦΟΡΑ ΣΥΓΓΡΑΜΜΑΤΩΝ</span>
 								</button>
 							</a>
 						</div>
@@ -77,7 +128,7 @@
 						<div class="col-md-10">
 							<a href="#!/student/declaration/log">
 								<button class="btn w-100 teal darken-3 waves-effect waves-light student-options">
-									<span class="fs-2 text-white">ΙΣΤΟΡΙΚΟ ΣΥΓΓΡΑΜΑΤΩΝ</span>
+									<span class="fs-2 text-white"><i class="fas fa-history fs-2 mr-2"></i>ΙΣΤΟΡΙΚΟ ΣΥΓΓΡΑΜΑΤΩΝ</span>
 								</button>
 							</a>
 						</div>
