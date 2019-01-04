@@ -27,7 +27,7 @@ class DepartmentsCourses {
             [$this->department_id,
             $this->course_id]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
@@ -55,7 +55,7 @@ class DepartmentsCourses {
         $result = $this->connect()->query($query);
 
         $data = [
-			"departmentsCourses" => $stmt->fetchAll(),
+			"departmentsCourses" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -69,7 +69,7 @@ class DepartmentsCourses {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"departmentsCourses" => $stmt->fetch()
+			"departmentsCourses" => $stmt->fetch(PDO::FETCH_OBJ)
         ];
         
         return $data;

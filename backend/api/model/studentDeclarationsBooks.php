@@ -27,7 +27,7 @@ class StudentDeclarationsBooks {
             [$this->book_id,
             $this->declaration_id]);
 
-        return $this->connection->lastInsertId;
+        return $this->connection->lastInsertId();
     }
     
     public function update(){
@@ -55,10 +55,24 @@ class StudentDeclarationsBooks {
         $result = $this->connect()->query($query);
 
         $data = [
-			"studentDeclarationsBooks" => $stmt->fetchAll(),
+			"studentDeclarationsBooks" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
+        return $data;
+    }
+
+    public function getByDeclarationId() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE declaration_id=?";
+
+		$stmt = $this->connection->prepare($query);
+		$stmt->execute([$this->declaration_id]);
+
+		$data = [
+            "studentDeclarationsBooks" => $stmt->fetchAll(PDO::FETCH_CLASS),
+            "count" => $stmt->rowCount()
+        ];
+        
         return $data;
     }
 
@@ -69,7 +83,7 @@ class StudentDeclarationsBooks {
 		$stmt->execute([$this->id]);
 
 		$data = [
-			"studentDeclarationsBooks" => $stmt->fetch()
+			"studentDeclarationsBooks" => $stmt->fetch(PDO::FETCH_OBJ)
         ];
         
         return $data;

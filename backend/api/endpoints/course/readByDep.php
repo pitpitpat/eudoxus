@@ -7,7 +7,7 @@ $connection = $dbhandler->getConnection();
 
 $course = new Course($connection);
 $departmentId = $_GET['departmentId'];
-$response = $course->getById();
+$response = $course->getByDepartmentId($departmentId);
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
