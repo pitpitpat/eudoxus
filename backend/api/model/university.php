@@ -97,8 +97,7 @@ class University {
         $stmt->execute([$studentId]);
 
         $data = [
-			"universities" => $stmt->fetchAll(PDO::FETCH_CLASS),
-			"count" => $stmt->rowCount()
+			"university" => $stmt->fetch(PDO::FETCH_OBJ)
 		];
 
         return $data;
