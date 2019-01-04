@@ -1,14 +1,14 @@
 <!-- Secondary Navbar -->
 <div class="row secondary-nav justify-content-center bg-white">
-	<div class="col-md-3 secondary-nav-item py-2 text-center active">
-		Δήλωση/Παραλαβή Συγγραμάτων
-	</div>
-	<div class="col-md-3 secondary-nav-item py-2 text-center">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none active" href="#!/student/declaration/1">
+		Δήλωση
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/book/offer">
 		Προσφορά Συγγραμμάτων
-	</div>
-	<div class="col-md-3 secondary-nav-item py-2 text-center">
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/log">
 		Ιστορικό Δηλώσεων
-	</div>
+	</a>
 </div>
 
 <div class="row justify-content-center">
@@ -16,19 +16,19 @@
 
     <ul class="stepper stepper-horizontal p-0 m-0">
       <li class="step">
-        <a ng-click="changePage('student')">
+        <a href="#!/student/declaration/1">
           <span class="circle">1</span>
           <span class="label">Επιλογή Τμήματος</span>
         </a>
       </li>
       <li class="step active">
-        <a ng-click="changePage('student-2')">
+        <a href="#!/student/declaration/2">
           <span class="circle">2</span>
           <span class="label">Επιλογή Συγγραμάτων</span>
         </a>
       </li>
       <li class="step warning">
-        <a href>
+        <a href="#!/student/declaration/3">
           <span class="circle"><i class="fa fa-warning"></i></span>
           <span class="label">Δήλωση</span>
         </a>
@@ -53,9 +53,9 @@
 								</div>
 								<div class="row">
 									<div class="col text-center">
-										<button class="btn btn-indigo" ng-click="changePage('student-2')">
+										<a class="btn btn-indigo" href="#!/student/declaration/3">
 											Συνέχεια
-										</button>
+										</a>
 									</div>
 								</div>
 							</form>

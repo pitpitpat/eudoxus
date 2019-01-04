@@ -7,6 +7,10 @@ body {
 	height: 11rem;
 }
 
+.student-options {
+	height: 6rem;
+}
+
 .w-4 {
 	width: 4rem;
 }
@@ -21,11 +25,15 @@ body {
 }
 
 .fs-2 {
-	font-size: 1.2rem;
+	font-size: 1.2rem !important;
 }
 
 .fs-0-9 {
 	font-size: 0.9rem;
+}
+
+.text-grey {
+	color: #555;
 }
 
 .users-card {
@@ -55,4 +63,16 @@ body {
 	position: relative;
 	overflow-y: scroll;
 	height: 528px;
+}
+
+.decoration-none {
+	transition: none;
+	color: inherit;
+    text-decoration: none;
+}
+
+.decoration-none:hover {
+	transition: none;
+	color: inherit;
+    text-decoration: none;
 }
