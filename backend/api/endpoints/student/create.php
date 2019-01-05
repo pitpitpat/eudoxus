@@ -16,6 +16,7 @@ $student->code = $request->code;
 $student->password = $request->password;
 $student->email = $request['email'];
 $student->phone = $request['phone'];
+$student->semester = $request->semester;
 if ($student->code == '' || $student->code == NULL
     || $student->password == '' || $student->password == NULL
     || $student->existsByCode($student->code) != NULL) {

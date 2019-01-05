@@ -83,9 +83,7 @@ class Department {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-            "department" => $stmt->fetch(PDO::FETCH_OBJ)
-        ];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
         
         return $data;
     }
@@ -111,9 +109,7 @@ class Department {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$studentId]);
 
-		$data = [
-			"department" => $stmt->fetch(PDO::FETCH_OBJ)
-        ];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
         
         return $data;
     }

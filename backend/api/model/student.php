@@ -67,9 +67,7 @@ class Student {
         $data = [false];
 
         if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
-            $data = [
-                "student" => $studentFetched
-            ];
+            $data = $studentFetched;
         }
         
 		return $data;
@@ -108,9 +106,7 @@ class Student {
         $data = [false];
 
         if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
-            $data = [
-                "student" => $studentFetched
-            ];
+            $data = $studentFetched;
         }
 
 		return $data;

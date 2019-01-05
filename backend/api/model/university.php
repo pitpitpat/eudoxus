@@ -68,9 +68,7 @@ class University {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"university" => $stmt->fetch(PDO::FETCH_OBJ)
-		];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
     }
     
     public function getByDepartmentId($departmentId) {
