@@ -71,9 +71,7 @@ class StudentDeclaration {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"declaration" => $stmt->fetch(PDO::FETCH_OBJ)
-        ];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
         
         return $data;
     }
