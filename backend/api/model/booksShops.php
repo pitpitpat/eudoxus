@@ -1,19 +1,18 @@
 <?php
-class StudentDeclaration {
+class BooksShops {
 
     // Connection instance
 	private $connection;
 
 	// table name
-    private $table_name = "studentDeclaration";
+    private $table_name = "BooksShops";
     //associated table names
     
 	// table columns
 	public $id;
-    public $timestamp;
-    public $student_id;
-    public $code;
-    public $semester;
+    public $book_id;
+    public $shop_id;
+    public $availability;
 
 	public function __construct($connection){
 		$this->connection = $connection;
@@ -21,29 +20,27 @@ class StudentDeclaration {
 
     public function create(){
         $query = "INSERT INTO " . $this->table_name . 
-        " (timestamp, student_id, code) " . 
-        " VALUES (?, ?, ?, ?)";
+        " (book_id, , shop_id, availability) " . 
+        " VALUES (?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$this->timestamp,
-            $this->student_id,
-            $this->code,
-            $this->semester]);
+            [$this->book_id,
+            $this->shop_id,
+            $this->availability]);
 
         return $this->connection->lastInsertId();
     }
     
     public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
-        "timestamp=?, student_id=?, code=?, semester=? WHERE id=?";
+        "book_id=?, shop_id=?, availability=? WHERE id=?";
         
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
-            [$this->timestamp,
-            $this->student_id,
-            $this->code,
-            $this->semester,
+            [$this->book_id,
+            $this->shop_id,
+            $this->availability,
             $this->id]);
 
     }
@@ -61,7 +58,7 @@ class StudentDeclaration {
         $result = $this->connect()->query($query);
 
         $data = [
-			"declarations" => $stmt->fetchAll(PDO::FETCH_CLASS),
+			"booksShops" => $stmt->fetchAll(PDO::FETCH_CLASS),
 			"count" => $stmt->rowCount()
 		];
 
@@ -79,16 +76,16 @@ class StudentDeclaration {
         return $data;
     }
 
-    public function getByStudentId() {
-        $query = "SELECT * FROM " . $this->table_name . " WHERE student_id=?";
+    public function getByBookId() {
+        $query = "SELECT * FROM " . $this->table_name . " WHERE book_id=?";
 
 		$stmt = $this->connection->prepare($query);
-		$stmt->execute([$this->student_id]);
+		$stmt->execute([$this->book_id]);
 
 		$data = [
-            "declaration" => $stmt->fetchAll(PDO::FETCH_CLASS),
-            "count" => $stmt->rowCount()
-        ];
+			"booksShops" => $stmt->fetchAll(PDO::FETCH_CLASS),
+			"count" => $stmt->rowCount()
+		];
         
         return $data;
     }
