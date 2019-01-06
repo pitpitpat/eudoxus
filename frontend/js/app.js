@@ -37,6 +37,10 @@
 			templateUrl: 'html/secretary-home.html',
 			controller: 'secretaryHomeCtrl'
 		})
+		.when("/secretary/addbook", {
+			templateUrl: 'html/secretary-addbook.html',
+			controller: 'secretaryAddBookCtrl'
+		})
 		.when("/login", {
 			templateUrl: 'html/login.html',
 			controller: 'loginCtrl'
