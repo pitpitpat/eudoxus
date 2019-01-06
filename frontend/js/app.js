@@ -58,6 +58,9 @@
 		.when("/contact", {
 			templateUrl: 'html/contact.html'
 		})
+		.when("/faqs", {
+			templateUrl: 'html/faqs.html'
+		})
 		.otherwise({
 			redirectTo: '/home'
 		});
