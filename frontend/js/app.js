@@ -64,6 +64,10 @@
 			templateUrl: 'html/secretary-home.html',
 			controller: 'secretaryHomeCtrl'
 		})
+		.when("/secretary/addbook", {
+			templateUrl: 'html/secretary-addbook.html',
+			controller: 'secretaryAddBookCtrl'
+		})
 		.when("/login", {
 			templateUrl: 'html/login.html',
 			controller: 'loginCtrl'
@@ -74,6 +78,15 @@
 		})
 		.when("/", {
 			redirectTo: '/home'
+		})
+		.when("/announcements", {
+			templateUrl: 'html/announcements.html'
+		})
+		.when("/contact", {
+			templateUrl: 'html/contact.html'
+		})
+		.when("/faqs", {
+			templateUrl: 'html/faqs.html'
 		})
 		.otherwise({
 			redirectTo: '/home'
