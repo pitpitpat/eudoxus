@@ -75,7 +75,7 @@
 			});
 		};
 
-		studentServiceFactory.getDepartmentById = function(departmentId) {	// make by student
+		studentServiceFactory.getDepartmentById = function(departmentId) {
 			var endpoint = '/department/readOne';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
@@ -90,7 +90,7 @@
 			});
 		}
 
-		studentServiceFactory.getDepartmentsByUniversityId = function(universityId) {	// make by student
+		studentServiceFactory.getDepartmentsByUniversityId = function(universityId) {
 			var endpoint = '/department/readByUni';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
@@ -130,7 +130,7 @@
 			});
 		}
 
-		studentServiceFactory.getCoursesByDepartmentId = function(departmentId) {	// make by student
+		studentServiceFactory.getCoursesByDepartmentId = function(departmentId) {
 			var endpoint = '/course/readByDep';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
@@ -145,12 +145,52 @@
 			});
 		}
 
-		studentServiceFactory.getBooksByCourseId = function(courseId) {	// make by student
+		studentServiceFactory.getBooksByCourseId = function(courseId) {
 			var endpoint = '/book/readByCourse';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
 			var params = {
 				course_id: courseId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		studentServiceFactory.createDeclaration = function() {
+			var endpoint = '/studentDeclaration/create';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var booksList = [];
+			for (courseId in $rootScope.user.declaration.books) {
+				var book = $rootScope.user.declaration.books[courseId];
+				booksList.push(book);
+			}
+
+			var data = {
+				student_id: $rootScope.user.id,
+				semester: $rootScope.user.semester,
+				books: booksList
+			};
+
+			console.log(data);
+
+			return $http({
+				method: "POST",
+				url: url,
+				data: data
+			});
+		}
+
+		studentServiceFactory.getDeclarationsByStudentId = function(studentId) {
+			var endpoint = '/studentDeclaration/readByStudent';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				student_id: studentId
 			};
 
 			return $http({

@@ -9,7 +9,7 @@
 	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
 		Προσφορά Συγγραμμάτων
 	</a>
-	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/log">
 		Ιστορικό Δηλώσεων
 	</a>
 </div>
@@ -30,7 +30,7 @@
 							<button class="btn btn-block btn-light">Συνδεδεμενα Τμηματα</button>
 						</div>
 						<div class="col-3 text-right">
-							<a class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-map-marked-alt"></i></a>
+							<a class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#mapModal"><i class="fas fa-map-marked-alt"></i></a>
 							<button class="btn btn-sm btn-primary rounded"><i class="fas fa-book mr-2"></i>{{keyLength(user.declaration.books)}}</button>
 						</div>
 					</div>
@@ -78,13 +78,13 @@
 																				<div class="row">
 																					<div class="col">
 																						<label class="mb-0" for="radio-{{book.id}}">
-																						{{"[" + book.code + "] " + "\"" + book.name + "\""}}
+																						{{book.name}}
 																						</label>
 																					</div>
 																				</div>
 																				<div class="row">
 																					<div class="col fs-0-9">
-																						{{"Συγγραφέας: " + book.author + " | " + "Σελίδες: " + book.pages}}
+																						{{"[" + book.code + "] Συγγραφέας: " + book.author + " | " + "Σελίδες: " + book.pages}}
 																					</div>
 																				</div>
 																			</div>

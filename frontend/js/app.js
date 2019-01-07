@@ -100,6 +100,7 @@
 		$rootScope.keyLength = generalUtility.keyLength;
 		$rootScope.logout = generalUtility.logout;
 		$rootScope.goToLogin = generalUtility.goToLogin;
+		$rootScope.redirectToStudentHome = generalUtility.redirectToStudentHome;
 
 		if (localStorage.eudoxusJWT) {
 			generalUtility.setJWT(localStorage.eudoxusJWT);

@@ -30,17 +30,38 @@
 			<!-- Footer -->
 			<ng-include src="'html/footer.html'"></ng-include>
 
-			<!-- Logout Modal-->
-			<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1100;">
+			<!-- Map Modal-->
+			<div class="modal fade" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" aria-hidden="true" style="z-index: 1100;">
 				<div class="modal-dialog" role="document" style="max-width: 724px;">
-					<div class="modal-content">
+					<div class="modal-content rounded">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Σημεία διανομής στο χάρτη</h5>
+							<h5 class="modal-title" id=mapModalLabel">Σημεία διανομής στο χάρτη</h5>
 							<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">×</span>
 							</button>
 						</div>
 						<div class="modal-body"><img src="img/map.png"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Student Declaration Modal -->
+			<div class="modal fade" id="studentDeclarationModal" tabindex="-1" role="dialog" aria-labelledby="declarationModalLabel" aria-hidden="true" style="z-index: 1100;">
+				<div class="modal-dialog" role="document" style="max-width: 500px;">
+					<div class="modal-content rounded" style="border: 3px solid #00C851;">
+						<div class="modal-header">
+							<h5 class="modal-title" id="declarationModalLabel">Επιτυχής Δήλωση</h5>
+							<button class="close" type="button" data-dismiss="modal" aria-label="Close" ng-click="redirectToStudentHome()">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							Η δήλωση σου καταχωρήθηκε με επιτυχία.<br><br>
+							Μπρορείς να παραλάβεις τα συγγράματα που εχεις δηλώσει με<br>
+							το παρακάτω PIN:<br><br>
+							<span class="pl-4 font-weight-bold">6542888895241</span><br><br>
+							Σου έχει αποσταλεί και σχετικό email.
+						</div>
 					</div>
 				</div>
 			</div>
@@ -67,6 +88,7 @@
 		<script src="js/controllers/studentDeclaration2Ctrl.js"></script>
 		<script src="js/controllers/studentDeclaration3Ctrl.js"></script>
 		<script src="js/controllers/studentDeclaration4Ctrl.js"></script>
+		<script src="js/controllers/studentDeclarationLogCtrl.js"></script>
 		<script src="js/controllers/secretaryHomeCtrl.js"></script>
 		<script src="js/controllers/secretaryAddBookCtrl.js"></script>
 
