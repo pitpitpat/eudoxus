@@ -52,7 +52,8 @@ class University {
     public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
 
-        $result = $this->connect()->query($query);
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
 
         $data = [
 			"universities" => $stmt->fetchAll(PDO::FETCH_CLASS),

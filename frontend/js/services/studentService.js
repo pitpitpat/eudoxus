@@ -90,12 +90,67 @@
 			});
 		}
 
+		studentServiceFactory.getDepartmentsByUniversityId = function(universityId) {	// make by student
+			var endpoint = '/department/readByUni';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				universityId: universityId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
 		studentServiceFactory.getUniversityByStudentId = function(studentId) {
 			var endpoint = '/university/readByStudent';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
 			var params = {
 				studentId: studentId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		studentServiceFactory.getAllUniversities = function() {
+			var endpoint = '/university/read';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			return $http({
+				method: "GET",
+				url: url
+			});
+		}
+
+		studentServiceFactory.getCoursesByDepartmentId = function(departmentId) {	// make by student
+			var endpoint = '/course/readByDep';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				departmentId: departmentId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		studentServiceFactory.getBooksByCourseId = function(courseId) {	// make by student
+			var endpoint = '/book/readByCourse';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				course_id: courseId
 			};
 
 			return $http({
