@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-9"></div>
 						<div class="col-3 text-right">
-							<button class="btn btn-sm btn-primary rounded"><i class="fas fa-map-marked-alt"></i></button>
+							<button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-map-marked-alt"></i></button>
 						</div>
 					</div>
 					<div class="row justify-content-center pt-5 pb-3">
@@ -32,22 +32,17 @@
 							<form name="booksForm">
 								<div class="row justify-content-center mb-7">
 									<div class="col-md-8">
-										<div class="row" ng-repeat="(courseId, book) in user.declaration.books">
+										<div class="row mb-3" ng-repeat="(courseId, book) in user.declaration.books">
 											<div class="col fs-2 text-grey">
 												<div class="card">
-													<div class="card-header">
+													<!-- <div class="card-header">
 														{{ course.name + "  " + course.professor}}
-													</div>
+													</div> -->
 													<div class="card-body">
 														<div class="row mb-3">
 															<div class="col">
-																<div class="row">
-																	<div class="col-1 pr-0">
-																		<div class="form-check">
-																			<input type="radio" ng-model="user.declaration.books[course.id]" ng-value="book.id" class="form-check-input">
-																		</div>
-																	</div>
-																	<div class="col-9">
+																<div class="row mb-3">
+																	<div class="col">
 																		<div class="row">
 																			<div class="col">
 																				{{"[" + book.code + "] " + "\"" + book.name + "\""}}
@@ -59,11 +54,33 @@
 																			</div>
 																		</div>
 																	</div>
-																	<div class="col-2">
-																		<div class="tooltip">
+																</div>
+																<div class="row mb-2">
+																	<div class="col-1 pr-0">
+																		<input type="radio" ng-model="book.takeMethod" value="store">
+																	</div>
+																	<div class="col-8 fs-0-9">
+																		<div class="mt-2">
 																			<i class="fas fa-store-alt fs-2"></i>
-																			<span class="tooltiptext">Διαθέσιμα στο κατάστημα: 34</span>
+																			{{"Βιβλιοπωλείο Bookpath, Διεύθυνση Σόλωνος 68"}}
 																		</div>
+																	</div>
+																	<div class="col-3">
+																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-1 pr-0">
+																		<input type="radio" ng-model="book.takeMethod" value="student">
+																	</div>
+																	<div class="col-8 fs-0-9">
+																		<div class="mt-2">
+																			<i class="fas fa-user fs-2"></i>
+																			{{"Από φοιτητή του τμήματος, Μονάδες: 9.6"}}
+																		</div>
+																	</div>
+																	<div class="col-3">
+																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
 																	</div>
 																</div>
 															</div>
