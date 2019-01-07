@@ -10,6 +10,7 @@ $studentDeclaration->id = $_POST['id'];
 $studentDeclaration->timestamp = $_POST['name'];
 $studentDeclaration->student_id = $_POST['student_id'];
 $studentDeclaration->code = $_POST['code'];
+$studentDeclaration->semester = $_POST['semester'];
 $studentDeclaration->update();
 
 header("Access-Control-Allow-Origin: *");

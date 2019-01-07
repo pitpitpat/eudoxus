@@ -14,6 +14,7 @@ $student->code = $_POST['code'];
 $student->password = $_POST['password'];
 $student->email = $_POST['email'];
 $student->phone = $_POST['phone'];
+$student->semester = $_POST['semester'];
 $student->update();
 
 header("Access-Control-Allow-Origin: *");

@@ -8,6 +8,7 @@ $connection = $dbhandler->getConnection();
 $departmentsCourses = new DepartmentsCourses($connection);
 $departmentsCourses->department_id = $_POST['department_id'];
 $departmentsCourses->course_id = $_POST['course_id'];
+$departmentsCourses->semester = $_POST['semester'];
 $response = $departmentsCourses->create();
 
 header("Access-Control-Allow-Origin: *");

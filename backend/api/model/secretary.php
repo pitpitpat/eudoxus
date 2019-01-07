@@ -92,9 +92,7 @@ class Secretary {
 		$data = [false];
 
         if (($secretaryFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
-            $data = [
-                "secretary" => $secretaryFetched
-            ];
+            $data = $secretaryFetched;
         }
         
         return $data;
@@ -108,10 +106,8 @@ class Secretary {
 
         $data = [false];
 
-        if (($studentFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
-            $data = [
-                "secretary" => $studentFetched
-            ];
+        if (($secretaryFetched = $stmt->fetch(PDO::FETCH_OBJ)) !== false) {
+            $data = $secretaryFetched;
         }
 
 		return $data;

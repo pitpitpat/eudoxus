@@ -14,6 +14,7 @@ date_default_timezone_set("Europe/Athens");
 $studentDeclaration->timestamp = date("Y-m-d H:i:s");
 $studentDeclaration->student_id =  $request->student_id;
 $studentDeclaration->code = rand(100000000, 999999999);
+$studentDeclaration->semester = $request->semester;
 $response = $studentDeclaration->create();
 for ($i=0; $i<count($request->books); $i++) {
     $studentDeclarationsBooks = new StudentDeclarationsBooks($connection);

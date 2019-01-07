@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+  <div class="col-md-10">
+    <ul class="stepper stepper-horizontal p-0 m-0">
+      <li class="step" ng-class="{'active': declarationStep === 1}">
+        <a href="#!/student/declaration/1">
+          <span class="circle">1</span>
+          <span class="label">Τμήμα</span>
+        </a>
+      </li>
+      <li class="step" ng-class="{'active': declarationStep === 2}">
+        <a href="#!/student/declaration/2">
+          <span class="circle">2</span>
+          <span class="label">Συγγράματα</span>
+        </a>
+      </li>
+      <li class="step" ng-class="{'active': declarationStep === 3}">
+        <a href="#!/student/declaration/3">
+          <span class="circle">3</span>
+          <span class="label">Τρόπος Παραλαβής</span>
+        </a>
+      </li>
+      <li class="step warning" ng-class="{'active': declarationStep === 4}">
+        <a href="#!/student/declaration/final">
+          <span class="circle"><i class="fas fa-exclamation"></i></span>
+          <span class="label">Τελική Δήλωση</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

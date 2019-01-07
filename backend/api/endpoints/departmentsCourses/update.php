@@ -9,6 +9,7 @@ $departmentsCourses = new DepartmentsCourses($connection);
 $departmentsCourses->id = $_POST['id'];
 $departmentsCourses->department_id = $_POST['department_id'];
 $departmentsCourses->course_id = $_POST['course_id'];
+$departmentsCourses->semester = $_POST['semester'];
 $departmentsCourses->update();
 
 header("Access-Control-Allow-Origin: *");

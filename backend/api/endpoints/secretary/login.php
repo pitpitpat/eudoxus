@@ -17,7 +17,7 @@ $secretary->username = $request->username;
 $secretary->password = $request->password;
 
 $response = $secretary->login();
-if ($response == [false]) {
+if ($response == false) {
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
     http_response_code(401);
@@ -27,7 +27,7 @@ if ($response == [false]) {
         "iss" => $iss,
         "iat" => $iat,
         "data" => [
-                "id" => $response["secretary"]->id,
+                "id" => $response->id,
                 "type" => "secretary"
             ]
      );

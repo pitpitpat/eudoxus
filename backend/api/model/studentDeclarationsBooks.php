@@ -82,9 +82,7 @@ class StudentDeclarationsBooks {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"studentDeclarationsBooks" => $stmt->fetch(PDO::FETCH_OBJ)
-        ];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
         
         return $data;
     }

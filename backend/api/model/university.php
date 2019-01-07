@@ -52,7 +52,8 @@ class University {
     public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
 
-        $result = $this->connect()->query($query);
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute();
 
         $data = [
 			"universities" => $stmt->fetchAll(PDO::FETCH_CLASS),
@@ -68,9 +69,7 @@ class University {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"university" => $stmt->fetch(PDO::FETCH_OBJ)
-		];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
     }
     
     public function getByDepartmentId($departmentId) {
@@ -96,9 +95,7 @@ class University {
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$studentId]);
 
-        $data = [
-			"university" => $stmt->fetch(PDO::FETCH_OBJ)
-		];
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
 
         return $data;
     }

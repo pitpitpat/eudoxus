@@ -13,15 +13,15 @@ class Course {
 	public $id;
 	public $name;
     public $professor;
-    
+
     public function __construct($connection){
 		$this->connection = $connection;
 	}
 
 
 	public function create(){
-        $query = "INSERT INTO " . $this->table_name . 
-        " (name, professor) " . 
+        $query = "INSERT INTO " . $this->table_name .
+        " (name, professor) " .
         " VALUES (?, ?)";
 
         $stmt = $this->connection->prepare($query);
@@ -31,11 +31,11 @@ class Course {
 
         return $this->connection->lastInsertId();
     }
-    
+
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET " .
         "name=?, professor=? WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
             [$this->name,
@@ -45,11 +45,11 @@ class Course {
 
     public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
     }
-    
+
     public function getAll() {
         $query = "SELECT * FROM " . $this->table_name;
 
@@ -69,13 +69,11 @@ class Course {
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$this->id]);
 
-		$data = [
-			"course" => $stmt->fetch(PDO::FETCH_OBJ)
-		];
+		$data = $stmt->fetch(PDO::FETCH_OBJ);
     }
-    
+
     public function getByDepartmentId($departmentId) {
-        $query = "SELECT * FROM " . $this->table_name . 
+        $query = "SELECT * FROM " . $this->table_name .
                  " WHERE id in (SELECT course_id FROM " . $this->department_courses_table_name . " WHERE department_id=?)";
 
         $stmt = $this->connection->prepare($query);
