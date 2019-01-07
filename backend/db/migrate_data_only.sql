@@ -7,6 +7,10 @@ INSERT INTO courses (id, name, professor) VALUES (6, 'Εισαγωγή στην 
 INSERT INTO courses (id, name, professor) VALUES (7, 'Εισαγωγή στον Προγραμματισμό', 'Αυγουστής Σφακιανός');
 INSERT INTO courses (id, name, professor) VALUES (8, 'Εφαρμοσμένα Μαθηματικά', 'Κορνήλιος Αυγουστίνος');
 
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (1, 'Εκδόσεις Τζιόλα', 'ΧΑΡ. ΤΡΙΚΟΥΠΗ 16 (ΥΨΟΣ ΑΚΑΔΗΜΙΑΣ)', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'tziolas@gmail.com', '2105982435');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (2, 'Εκδόσεις Κριτική', 'Νευροκοπίου 8', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'kritiki@gmail.com', '2105982109');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (3, 'Εκδόσεις Γκιούρδας', 'ΣΕΡΓΙΟΥ ΠΑΤΡΙΑΡΧΟΥ 4', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'gkiourdas@gmail.com', '2105800435');
+
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (1, 1, 'Εποικοδομητικός Διάλογος στον Σύγχρονο Κόσμο', '0001', 'Κωνσταντίνος Κατακουζινός', 848);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (2, 1, 'Το Αποχετευτικό Σύστημα στο Βυζάντιο', '0002', 'Κωνσταντίνος Κατακουζινός', 338);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (3, 2, 'European Union Part 1', '0003', 'John Witkinson', 338);
@@ -24,6 +28,23 @@ INSERT INTO books (id, course_id, name, code, author, pages) VALUES (14, 7, 'Π�
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (15, 7, 'Η Γλώσσα C', '0015', 'Σωτήρης Μανωλάκος', 538);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (16, 8, 'Διαφορικές Εξισώσεις', '0016', 'Μαρίνος Δίπλας', 738);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (17, 8, 'Μερικές Διαφορικές Εξισώσεις', '0017', 'Απόστολος Φέρτης', 838);
+
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (1, 1, 1, 3);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (2, 2, 1, 23);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (3, 3, 1, 6);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (4, 4, 1, 9);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (5, 5, 1, 0);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (6, 6, 1, 11);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (7, 7, 2, 2);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (8, 8, 2, 15);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (9, 9, 2, 10);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (10, 10, 2, 32);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (11, 11, 2, 8);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (12, 12, 3, 4);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (13, 13, 3, 14);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (14, 14, 3, 1);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (15, 15, 3, 9);
+INSERT INTO BooksShops (id, book_id, shop_id, availability) VALUES (16, 16, 3, 19);
 
 INSERT INTO universities (id, name) VALUES (1, 'Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών');
 INSERT INTO universities (id, name) VALUES (2, 'Αριστοτέλειο Πανεπιστήμιο Θεσσαλονίκης');
@@ -88,23 +109,31 @@ INSERT INTO students (id, department_id, name, surname, code, password, email, p
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (16, 3, 'Συμεών', 'Σαρακάκης', '1115201500032', '16161', 'simeon@gmail.com', '6942587962', 8);
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (17, 3, 'Λουκάς', 'Σαρακάκης', '1115201500020', '17171', 'saraluke@gmail.com', '6955369872', 8);
 
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (1, '2018-11-16 12:15:00', 1, '123456789012');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (2, '2018-11-15 12:25:00', 2, '123456789013');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (3, '2018-11-14 12:35:00', 3, '123456789014');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (4, '2018-11-13 12:45:00', 4, '123456789015');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (5, '2018-11-16 12:15:00', 5, '123456789016');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (6, '2018-11-17 12:25:00', 6, '123456789017');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (7, '2018-11-18 12:35:00', 7, '123456789018');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (8, '2018-11-19 12:45:00', 8, '123456789019');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (9, '2018-11-20 12:45:00', 9, '123456789020');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (10, '2018-11-16 12:16:00', 10, '123456789021');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (11, '2018-11-15 12:26:00', 11, '123456789022');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (12, '2018-11-14 12:36:00', 12, '123456789023');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (13, '2018-11-13 12:46:00', 13, '123456789024');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (14, '2018-11-17 12:16:00', 14, '123456789025');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (15, '2018-11-18 12:26:00', 15, '123456789026');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (16, '2018-11-19 12:36:00', 15, '123456789027');
-INSERT INTO studentDeclaration (id, timestamp, student_id, code) VALUES (17, '2018-11-20 12:46:00', 16, '123456789028');
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (1, 1, 1);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (2, 2, 1);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (3, 3, 2);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (4, 4, 4);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (5, 5, 4);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (6, 6, 5);
+INSERT INTO BooksShops (id, book_id, student_id) VALUES (7, 7, 5);
+
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (1, '2018-11-16 12:15:00', 1, '123456789012', 1);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (2, '2018-11-15 12:25:00', 2, '123456789013', 7);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (3, '2018-11-14 12:35:00', 3, '123456789014', 8);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (4, '2018-11-13 12:45:00', 4, '123456789015', 2);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (5, '2018-11-16 12:15:00', 5, '123456789016', 2);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (6, '2018-11-17 12:25:00', 6, '123456789017', 3);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (7, '2018-11-18 12:35:00', 7, '123456789018', 3);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (8, '2018-11-19 12:45:00', 8, '123456789019', 4);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (9, '2018-11-20 12:45:00', 9, '123456789020', 4);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (10, '2018-11-16 12:16:00', 10, '123456789021', 5);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (11, '2018-11-15 12:26:00', 11, '123456789022', 5);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (12, '2018-11-14 12:36:00', 12, '123456789023', 6);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (13, '2018-11-13 12:46:00', 13, '123456789024', 6);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (14, '2018-11-17 12:16:00', 14, '123456789025', 7);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (15, '2018-11-18 12:26:00', 15, '123456789026', 1);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (16, '2018-11-19 12:36:00', 15, '123456789027', 2);
+INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (17, '2018-11-20 12:46:00', 16, '123456789028', 8);
 
 INSERT INTO studentDeclarationsBooks (id, book_id, declaration_id) VALUES (1, 1, 1);
 INSERT INTO studentDeclarationsBooks (id, book_id, declaration_id) VALUES (2, 2, 2);
