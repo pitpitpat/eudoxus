@@ -1,0 +1,52 @@
+<!-- Secondary Navbar -->
+<div class="row secondary-nav justify-content-center bg-white">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/home">
+		Αρχική
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/1">
+		Δήλωση
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
+		Προσφορά Συγγραμμάτων
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none active" href="#!/student/declaration/log">
+		Ιστορικό Δηλώσεων
+	</a>
+</div>
+
+<div class="row justify-content-center pt-5">
+	<div class="col-md-10">
+		<div class="card">
+			<div class="card-body p-4">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col text-center fs-2">
+							Παλαιότερες Δηλώσεις
+						</div>
+					</div>
+					<div class="row justify-content-center pt-5 pb-3">
+						<div class="col">
+							<div class="row justify-content-center">
+								<div class="col-md-6">
+									<div class="row mb-4" ng-repeat="declaration in declarations">
+										<div class="col fs-2 text-grey">
+											<div class="card light-blue">
+												<div class="card-body">
+													<div class="row">
+														<div class="col text-white">
+															{{ "Δήλωση " + (declaration.declaration.semester % 2 === 0 ? "εαρινού":"χειμερινού") + " εξαμήνου (" + declaration.declaration.id + "ου)" }}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

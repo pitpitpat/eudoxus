@@ -6,7 +6,7 @@ $dbhandler = new DBHandler();
 $connection = $dbhandler->getConnection();
 
 $department = new Department($connection);
-$department->universityId = $_GET['universityId'];
+$department->university_id = $_GET['universityId'];
 $response = $department->getByUniversity();
 
 header("Access-Control-Allow-Origin: *");

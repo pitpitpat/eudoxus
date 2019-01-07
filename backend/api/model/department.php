@@ -8,7 +8,7 @@ class Department {
     private $table_name = "departments";
     //associated table names
     private $students_table_name = "Students";
-    
+
 	// table columns
 	public $id;
     public $name;
@@ -24,8 +24,8 @@ class Department {
 	}
 
     public function create(){
-        $query = "INSERT INTO " . $this->table_name . 
-        " (name, univeresity_id, address, city, postalcode, county, semesters) " . 
+        $query = "INSERT INTO " . $this->table_name .
+        " (name, univeresity_id, address, city, postalcode, county, semesters) " .
         " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
@@ -40,11 +40,11 @@ class Department {
 
         return $this->connection->lastInsertId();
     }
-    
+
     public function update() {
         $query = "UPDATE " . $this->table_name . " SET " .
         "name=?, university_id=?, address=?, city=?, postalcode=?, county=?, semesters=? WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
             [$this->name,
@@ -59,7 +59,7 @@ class Department {
 
     public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
     }
@@ -84,7 +84,7 @@ class Department {
 		$stmt->execute([$this->id]);
 
 		$data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         return $data;
     }
 
@@ -98,19 +98,19 @@ class Department {
             "departments" => $stmt->fetchAll(PDO::FETCH_CLASS),
             "count" => $stmt->rowCount()
         ];
-        
+
         return $data;
     }
 
     public function getByStudentId($studentId) {
-        $query = "SELECT * FROM " . $this->table_name . 
+        $query = "SELECT * FROM " . $this->table_name .
                  " WHERE id in (select department_id from " . $this->students_table_name . " where id = ?)";
 
 		$stmt = $this->connection->prepare($query);
 		$stmt->execute([$studentId]);
 
 		$data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         return $data;
     }
 
