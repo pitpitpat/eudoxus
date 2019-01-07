@@ -121,6 +121,10 @@
 			}
 		}
 
+		generalUtilityFactory.redirectToStudentHome = function() {
+			window.location.href = "#!/student/home";
+		}
+
 		generalUtilityFactory.logout = function() {
 			delete localStorage.eudoxusJWT;
 			generalUtilityFactory.initUser();

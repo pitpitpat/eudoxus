@@ -7,7 +7,7 @@ class StudentDeclaration {
 	// table name
     private $table_name = "studentDeclaration";
     //associated table names
-    
+
 	// table columns
 	public $id;
     public $timestamp;
@@ -20,8 +20,8 @@ class StudentDeclaration {
 	}
 
     public function create(){
-        $query = "INSERT INTO " . $this->table_name . 
-        " (timestamp, student_id, code) " . 
+        $query = "INSERT INTO " . $this->table_name .
+        " (timestamp, student_id, code, semester) " .
         " VALUES (?, ?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
@@ -33,11 +33,11 @@ class StudentDeclaration {
 
         return $this->connection->lastInsertId();
     }
-    
+
     public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
         "timestamp=?, student_id=?, code=?, semester=? WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
             [$this->timestamp,
@@ -50,7 +50,7 @@ class StudentDeclaration {
 
     public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
     }
@@ -75,7 +75,7 @@ class StudentDeclaration {
 		$stmt->execute([$this->id]);
 
 		$data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         return $data;
     }
 
@@ -89,7 +89,7 @@ class StudentDeclaration {
             "declaration" => $stmt->fetchAll(PDO::FETCH_CLASS),
             "count" => $stmt->rowCount()
         ];
-        
+
         return $data;
     }
 

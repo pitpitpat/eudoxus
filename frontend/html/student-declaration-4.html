@@ -9,7 +9,7 @@
 	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
 		Προσφορά Συγγραμμάτων
 	</a>
-	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/log">
 		Ιστορικό Δηλώσεων
 	</a>
 </div>
@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-9"></div>
 						<div class="col-3 text-right">
-							<button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-map-marked-alt"></i></button>
+							<button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#mapModal"><i class="fas fa-map-marked-alt"></i></button>
 						</div>
 					</div>
 					<div class="row justify-content-center pt-5 pb-3">
@@ -32,55 +32,41 @@
 							<form name="booksForm">
 								<div class="row justify-content-center mb-7">
 									<div class="col-md-8">
-										<div class="row" ng-repeat="(courseId, book) in user.declaration.books">
+										<div class="row mb-4" ng-repeat="(courseId, book) in user.declaration.books">
 											<div class="col fs-2 text-grey">
 												<div class="card">
-													<div class="card-header">
+<!-- 												<div class="card-header">
 														{{ course.name + "  " + course.professor}}
-													</div>
+													</div> -->
 													<div class="card-body">
 														<div class="row mb-3">
 															<div class="col">
-																<div class="row mb-3">
-																	<div class="col">
-																		<div class="row">
+																<div class="row">
+																	<div class="col-7">
+																		<div class="row mt-3">
 																			<div class="col">
-																				{{"[" + book.code + "] " + "\"" + book.name + "\""}}
+																				{{book.name}}
 																			</div>
 																		</div>
 																		<div class="row">
 																			<div class="col fs-0-9">
-																				{{"Συγγραφέας: " + book.author + ", " + "Σελίδες: " + book.pages}}
+																				{{"[" + book.code + "] Συγγραφέας: " + book.author + ", " + "Σελίδες: " + book.pages}}
 																			</div>
 																		</div>
 																	</div>
-																</div>
-																<div class="row mb-2">
-																	<div class="col-1 pr-0">
-																		<input type="radio" ng-model="book.takeMethod" value="store">
-																	</div>
-																	<div class="col-8 fs-0-9">
-																		<div class="mt-2">
-																			<i class="fas fa-store-alt fs-2"></i>
-																			{{"Βιβλιοπωλείο Bookpath, Διεύθυνση Σόλωνος 68"}}
+																	<div class="col-5 fs-0-9">
+																		<div class="row">
+																			<div class="col text-center">
+																				<i class="fas fa-store-alt fs-2"></i>
+																				<br>Βιβλιοπωλείο Bookpath<br>
+																				Διεύθυνση: Σόλωνος 76, Αθήνα 106 80
+																			</div>
 																		</div>
-																	</div>
-																	<div class="col-3">
-																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
-																	</div>
-																</div>
-																<div class="row">
-																	<div class="col-1 pr-0">
-																		<input type="radio" ng-model="book.takeMethod" value="student">
-																	</div>
-																	<div class="col-8 fs-0-9">
-																		<div class="mt-2">
-																			<i class="fas fa-user fs-2"></i>
-																			{{"Από φοιτητή του τμήματος, Μονάδες: 9.6"}}
+																		<div class="row">
+																			<div class="col text-center">
+																				<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
+																			</div>
 																		</div>
-																	</div>
-																	<div class="col-3">
-																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
 																	</div>
 																</div>
 															</div>
@@ -94,8 +80,7 @@
 
 								<div class="row">
 									<div class="col text-center">
-										<button ng-if="isLoggedIn" type="submit" ng-disabled="!booksForm.$valid" class="btn btn-indigo rounded" ng-click="goToDeclaration4()">Συνεχεια</button>
-										<button ng-if="!isLoggedIn" type="submit" ng-disabled="!booksForm.$valid" class="btn btn-indigo rounded" ng-click="goToLogin()">Συνδεση για συνεχεια</button>
+										<button ng-if="isLoggedIn" type="submit" ng-disabled="!booksForm.$valid" class="btn btn-danger rounded" ng-click="createDeclaration()"  data-toggle="modal" data-target="#studentDeclarationModal">Οριστικη Υποβολη</button>
 									</div>
 								</div>
 							</form>

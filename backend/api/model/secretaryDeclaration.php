@@ -7,7 +7,7 @@ class SecretaryDeclaration {
 	// table name
     private $table_name = "secretaryDeclaration";
     //associated table names
-    
+
 	// table columns
 	public $id;
     public $timestamp;
@@ -19,8 +19,8 @@ class SecretaryDeclaration {
 	}
 
     public function create(){
-        $query = "INSERT INTO " . $this->table_name . 
-        " (timestamp, secretary_id, code) " . 
+        $query = "INSERT INTO " . $this->table_name .
+        " (timestamp, secretary_id, code) " .
         " VALUES (?, ?, ?)";
 
         $stmt = $this->connection->prepare($query);
@@ -31,11 +31,11 @@ class SecretaryDeclaration {
 
         return $this->connection->lastInsertId();
     }
-    
+
     public function update(){
         $query = "UPDATE " . $this->table_name . " SET " .
         "timestamp=?, secretary_id=?, code=? WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute(
             [$this->timestamp,
@@ -47,7 +47,7 @@ class SecretaryDeclaration {
 
     public function delete(){
         $query = "DELETE FROM " . $this->table_name . " WHERE id=?";
-        
+
         $stmt = $this->connection->prepare($query);
         $stmt->execute([$this->id]);
     }
@@ -72,7 +72,7 @@ class SecretaryDeclaration {
 		$stmt->execute([$this->id]);
 
 		$data = $stmt->fetch(PDO::FETCH_OBJ);
-        
+
         return $data;
     }
 
@@ -86,7 +86,7 @@ class SecretaryDeclaration {
             "declaration" => $stmt->fetchAll(PDO::FETCH_CLASS),
             "count" => $stmt->rowCount()
         ];
-        
+
         return $data;
     }
 

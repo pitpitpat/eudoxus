@@ -5,6 +5,12 @@
 
 		$scope.declarationStep = 4;
 
+		$scope.createDeclaration = function() {
+			studentService.createDeclaration().then(function(response) {
+				console.log(response.data);
+			});
+		}
+
 		/* ================= On start ================= */
 
 		console.log("student-final");
