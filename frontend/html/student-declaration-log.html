@@ -14,31 +14,53 @@
 	</a>
 </div>
 
-<div class="row justify-content-center pt-5">
+<nav class="pt-3" aria-label="breadcrumb">
+	<ol class="breadcrumb grey lighten-4">
+		<li class="breadcrumb-item"><a href="#!/home">Αρχική</a></li>
+		<li class="breadcrumb-item"><a href="#!/student/home">Φοιτητής</a></li>
+		<li class="breadcrumb-item active">Ιστορικό Δηλώσεων</li>
+	</ol>
+</nav>
+
+<div class="row justify-content-center">
 	<div class="col-md-10">
 		<div class="card">
+			<div class="card-header text-center">
+				<h5 class="mb-0">Παλαιότερες Δηλώσεις</h5>
+			</div>
 			<div class="card-body p-4">
 				<div class="container-fluid">
-					<div class="row">
-						<div class="col text-center fs-2">
-							Παλαιότερες Δηλώσεις
-						</div>
-					</div>
-					<div class="row justify-content-center pt-5 pb-3">
+					<div class="row justify-content-center pt-4 pb-3">
 						<div class="col">
-							<div class="row justify-content-center">
+							<div ng-if="isLoggedIn" class="row justify-content-center">
 								<div class="col-md-6">
 									<div class="row mb-4" ng-repeat="declaration in declarations">
 										<div class="col fs-2 text-grey">
-											<div class="card light-blue">
-												<div class="card-body">
-													<div class="row">
-														<div class="col text-white">
-															{{ "Δήλωση " + (declaration.declaration.semester % 2 === 0 ? "εαρινού":"χειμερινού") + " εξαμήνου (" + declaration.declaration.id + "ου)" }}
+											<a href="#!/student/declaration/show/{{declaration.declaration.id}}">
+												<div class="card light-blue">
+													<div class="card-body">
+														<div class="row">
+															<div class="col text-white px-5">
+																{{ "Δήλωση " + declaration.declaration.semester + "ου εξαμήνου " + (declaration.declaration.semester % 2 === 0 ? "(Εαρινό)":"(Χειμερινό)")}}
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div ng-if="!isLoggedIn" class="row justify-content-center">
+								<div class="col">
+									<div class="row mb-5">
+										<div class="col fs-2 text-center">
+											Παρακαλω συνδεσου για να δεις τις παλαιότερες δηλώσεις σου
+										</div>
+									</div>
+									<div class="row">
+										<div class="col text-center">
+											<button class="btn btn-lg rounded mdb-color darken-2" ng-click="goToLogin()">Εισοδος</button>
 										</div>
 									</div>
 								</div>

@@ -8,6 +8,7 @@
 		$scope.createDeclaration = function() {
 			studentService.createDeclaration().then(function(response) {
 				console.log(response.data);
+				$rootScope.declarationCode = "6542888895241";
 			});
 		}
 

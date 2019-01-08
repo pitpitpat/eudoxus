@@ -60,6 +60,10 @@
 			templateUrl: 'html/student-declaration-log.html',
 			controller: 'studentDeclarationLogCtrl'
 		})
+		.when("/student/declaration/show/:ID", {
+			templateUrl: 'html/student-declaration-show.html',
+			controller: 'studentDeclarationShowCtrl'
+		})
 		.when("/secretary/home", {
 			templateUrl: 'html/secretary-home.html',
 			controller: 'secretaryHomeCtrl'
