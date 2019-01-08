@@ -15,7 +15,10 @@ $studentDeclaration->timestamp = date("Y-m-d H:i:s");
 $studentDeclaration->student_id =  $request->student_id;
 $studentDeclaration->code = rand(100000000, 999999999);
 $studentDeclaration->semester = $request->semester;
-$response = $studentDeclaration->create();
+$response = [
+    "id" => $studentDeclaration->create(),
+    "code" => $studentDeclaration->code
+]
 for ($i=0; $i<count($request->books); $i++) {
     $studentDeclarationsBooks = new StudentDeclarationsBooks($connection);
     $studentDeclarationsBooks->book_id = $request->books[$i]->id;
