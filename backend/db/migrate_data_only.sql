@@ -109,13 +109,13 @@ INSERT INTO students (id, department_id, name, surname, code, password, email, p
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (16, 3, 'Συμεών', 'Σαρακάκης', '1115201500032', '16161', 'simeon@gmail.com', '6942587962', 8);
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (17, 3, 'Λουκάς', 'Σαρακάκης', '1115201500020', '17171', 'saraluke@gmail.com', '6955369872', 8);
 
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (1, 1, 1);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (2, 2, 1);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (3, 3, 2);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (4, 4, 4);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (5, 5, 4);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (6, 6, 5);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (7, 7, 5);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (1, 1, 1);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (2, 2, 1);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (3, 3, 2);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (4, 4, 4);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (5, 5, 4);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (6, 6, 5);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (7, 7, 5);
 
 INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (1, '2018-11-16 12:15:00', 1, '123456789012', 1);
 INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (2, '2018-11-15 12:25:00', 2, '123456789013', 7);
