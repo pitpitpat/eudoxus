@@ -5,16 +5,6 @@
 
 		/* ================= On start ================= */
 
-		console.log("home");
-
-		studentService.getAllStudents().then(function(response) {
-			console.log(response.data);
-		});
-
-		studentService.getStudent(3).then(function(response) {
-			console.log(response.data);
-		});
-
 		// var student = {
 		// 	departmentId: 2,
 		// 	name: "eirini",

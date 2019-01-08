@@ -15,15 +15,42 @@
 		})
 		.when("/student/declaration/1", {
 			templateUrl: 'html/student-declaration-1.html',
-			controller: 'studentDeclaration1Ctrl'
+			controller: 'studentDeclaration1Ctrl',
+			resolve: {
+				user: function($rootScope){
+					return $rootScope.userPromise;
+				}
+			}
 		})
 		.when("/student/declaration/2", {
 			templateUrl: 'html/student-declaration-2.html',
-			controller: 'studentDeclaration2Ctrl'
+			controller: 'studentDeclaration2Ctrl',
+			resolve: {
+				declaration: function(generalUtility) {
+					generalUtility.redirectToPreviousStep(2);
+					return true;
+				}
+			}
 		})
 		.when("/student/declaration/3", {
 			templateUrl: 'html/student-declaration-3.html',
-			controller: 'studentDeclaration3Ctrl'
+			controller: 'studentDeclaration3Ctrl',
+			resolve: {
+				declaration: function(generalUtility) {
+					generalUtility.redirectToPreviousStep(3);
+					return true;
+				}
+			}
+		})
+		.when("/student/declaration/final", {
+			templateUrl: 'html/student-declaration-4.html',
+			controller: 'studentDeclaration4Ctrl',
+			resolve: {
+				declaration: function(generalUtility) {
+					generalUtility.redirectToPreviousStep(4);
+					return true;
+				}
+			}
 		})
 		.when("/student/book/offer", {
 			templateUrl: 'html/student-book-offer.html',
@@ -32,6 +59,10 @@
 		.when("/student/declaration/log", {
 			templateUrl: 'html/student-declaration-log.html',
 			controller: 'studentDeclarationLogCtrl'
+		})
+		.when("/student/declaration/show/:ID", {
+			templateUrl: 'html/student-declaration-show.html',
+			controller: 'studentDeclarationShowCtrl'
 		})
 		.when("/secretary/home", {
 			templateUrl: 'html/secretary-home.html',
@@ -66,16 +97,18 @@
 		});
 
 	})
-	.run(function ($rootScope, generalUtility, generalService, studentService) {
+	.run(function ($rootScope, generalUtility, studentService) {
 
 		generalUtility.initApp();
 
-		$rootScope.logout = generalService.logout;
+		$rootScope.keyLength = generalUtility.keyLength;
+		$rootScope.logout = generalUtility.logout;
 		$rootScope.goToLogin = generalUtility.goToLogin;
+		$rootScope.redirectToStudentHome = generalUtility.redirectToStudentHome;
 
 		if (localStorage.eudoxusJWT) {
 			generalUtility.setJWT(localStorage.eudoxusJWT);
-			generalUtility.getUser(false);
+			$rootScope.userPromise = generalUtility.getUser(false);
 		}
 
 	});

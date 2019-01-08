@@ -1,9 +1,12 @@
 <!-- Secondary Navbar -->
 <div class="row secondary-nav justify-content-center bg-white">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none active" href="#!/student/home">
+		Αρχική
+	</a>
 	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/1">
 		Δήλωση
 	</a>
-	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/book/offer">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
 		Προσφορά Συγγραμμάτων
 	</a>
 	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/log">
@@ -11,18 +14,25 @@
 	</a>
 </div>
 
-<div class="row justify-content-center pt-5">
+<nav class="pt-3" aria-label="breadcrumb">
+	<ol class="breadcrumb grey lighten-4">
+		<li class="breadcrumb-item"><a href="#!/home">Αρχική</a></li>
+		<li class="breadcrumb-item active">Φοιτητής</li>
+	</ol>
+</nav>
+
+<div class="row justify-content-center">
 	<div class="col-md-6">
 		<div class="card h-100">
 			<div class="card-header text-center">
-				Στοιχεία Φοιτητή
+				<h5 class="mb-0">Στοιχεία Φοιτητή</h5>
 			</div>
 			<div class="card-body p-4">
 				<div class="container-fluid">
 
-					<div ng-if="user" class="row pt-3">
+					<div ng-if="isLoggedIn" class="row pt-3">
 						<div class="col">
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Όνομα:
 								</div>
@@ -30,7 +40,7 @@
 									{{ user.name }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Επίθετο:
 								</div>
@@ -38,7 +48,7 @@
 									{{ user.surname }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Αριθμός Μητρώου:
 								</div>
@@ -46,7 +56,7 @@
 									{{ user.code }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Πανεπιστήμιο:
 								</div>
@@ -54,7 +64,7 @@
 									{{ user.university.name }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Τμήμα:
 								</div>
@@ -62,7 +72,15 @@
 									{{ user.department.name }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
+								<div class="col-6 fs-2">
+									Τρέχον Εξάμηνο:
+								</div>
+								<div class="col-6 fs-2">
+									{{ user.semester + "ο"}}
+								</div>
+							</div>
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Πόλη:
 								</div>
@@ -70,7 +88,7 @@
 									{{ user.department.city }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Email:
 								</div>
@@ -78,7 +96,7 @@
 									{{ user.email }}
 								</div>
 							</div>
-							<div class="row text-grey mb-4">
+							<div class="row text-grey mb-3">
 								<div class="col-6 fs-2">
 									Τηλέφωνο:
 								</div>
@@ -89,9 +107,18 @@
 						</div>
 					</div>
 
-					<div ng-if="!user" class="row mt-5">
-						<div class="col fs-2 text-center">
-							Παρακαλω συνδεσου για να δεις τα στοιχεια σου
+					<div ng-if="!isLoggedIn" class="row mt-5">
+						<div class="col">
+							<div class="row mb-5">
+								<div class="col fs-2 text-center">
+									Παρακαλω συνδεσου για να δεις τα στοιχεια σου
+								</div>
+							</div>
+							<div class="row">
+								<div class="col text-center">
+									<button class="btn btn-lg rounded mdb-color darken-2" ng-click="goToLogin()">Εισοδος</button>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -102,7 +129,7 @@
 	<div class="col-md-6">
 		<div class="card h-100">
 			<div class="card-header text-center">
-				Επιλεξτε μια απο τις παρακατω ενεργειες
+				<h5 class="mb-0">Επιλεξτε μια απο τις παρακατω ενεργειες</h5>
 			</div>
 			<div class="card-body users-card">
 				<div class="container-fluid">
@@ -117,7 +144,7 @@
 					</div>
 					<div class="row justify-content-center mb-4">
 						<div class="col-md-10">
-							<a href="#!/student/books/offer">
+							<a>
 								<button class="btn w-100 cyan darken-3 waves-effect waves-light student-options">
 									<span class="fs-2 text-white"><i class="fas fa-book fs-2 mr-2"></i>ΠΡΟΣΦΟΡΑ ΣΥΓΓΡΑΜΜΑΤΩΝ</span>
 								</button>

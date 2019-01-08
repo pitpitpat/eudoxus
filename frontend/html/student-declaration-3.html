@@ -1,0 +1,119 @@
+<!-- Secondary Navbar -->
+<div class="row secondary-nav justify-content-center bg-white">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/home">
+		Αρχική
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none active" href="#!/student/declaration/1">
+		Δήλωση
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
+		Προσφορά Συγγραμμάτων
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/log">
+		Ιστορικό Δηλώσεων
+	</a>
+</div>
+
+<nav class="pt-3" aria-label="breadcrumb">
+	<ol class="breadcrumb grey lighten-4">
+		<li class="breadcrumb-item"><a href="#!/home">Αρχική</a></li>
+		<li class="breadcrumb-item"><a href="#!/student/home">Φοιτητής</a></li>
+		<li class="breadcrumb-item active">Δήλωση</li>
+		<li class="breadcrumb-item"><a href="#!/student/declaration/1">Βήμα 1</a></li>
+		<li class="breadcrumb-item"><a href="#!/student/declaration/2">Βήμα 2</a></li>
+		<li class="breadcrumb-item active">Βήμα 3</li>
+	</ol>
+</nav>
+
+<ng-include src="'html/student-declaration-steps.html'"></ng-include>
+
+<div class="row justify-content-center">
+	<div class="col-md-11">
+		<div class="card">
+			<div class="card-body p-4">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-9"></div>
+						<div class="col-3 text-right">
+							<button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#mapModal"><i class="fas fa-map-marked-alt"></i></button>
+						</div>
+					</div>
+					<div class="row justify-content-center pt-5 pb-3">
+						<div class="col">
+							<form name="booksForm">
+								<div class="row justify-content-center mb-7">
+									<div class="col-md-8">
+										<div class="row mb-3" ng-repeat="(courseId, book) in user.declaration.books">
+											<div class="col fs-2 text-grey">
+												<div class="card">
+													<!-- <div class="card-header">
+														{{ course.name + "  " + course.professor}}
+													</div> -->
+													<div class="card-body">
+														<div class="row mb-3">
+															<div class="col">
+																<div class="row mb-3">
+																	<div class="col">
+																		<div class="row">
+																			<div class="col">
+																				{{book.name}}
+																			</div>
+																		</div>
+																		<div class="row">
+																			<div class="col fs-0-9">
+																				{{"[" + book.code + "] Συγγραφέας: " + book.author + ", " + "Σελίδες: " + book.pages}}
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mb-2">
+																	<div class="col-1 pr-0">
+																		<input type="radio" ng-model="book.takeMethod" value="store">
+																	</div>
+																	<div class="col-8 fs-0-9">
+																		<div class="mt-2">
+																			<i class="fas fa-store-alt fs-2"></i>
+																			Βιβλιοπωλείο Bookpath, Διεύθυνση: Σόλωνος 76, Αθήνα 106 80
+																		</div>
+																	</div>
+																	<div class="col-3">
+																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
+																	</div>
+																</div>
+																<div class="row">
+																	<div class="col-1 pr-0">
+																		<input type="radio" ng-model="book.takeMethod" value="student">
+																	</div>
+																	<div class="col-8 fs-0-9">
+																		<div class="mt-2">
+																			<i class="fas fa-user fs-2"></i>
+																			Από φοιτητή του τμήματος, Μονάδες: 9.6
+																		</div>
+																	</div>
+																	<div class="col-3">
+																		<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col text-center">
+										<button ng-if="isLoggedIn" type="submit" ng-disabled="!booksForm.$valid" class="btn btn-indigo rounded" ng-click="goToDeclaration4()">Συνεχεια</button>
+										<button ng-if="!isLoggedIn" type="submit" ng-disabled="!booksForm.$valid" class="btn btn-indigo rounded" ng-click="goToLogin()">Συνδεση για συνεχεια</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
