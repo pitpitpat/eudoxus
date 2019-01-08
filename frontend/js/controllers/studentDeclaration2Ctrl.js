@@ -1,7 +1,9 @@
 (function() {
 
 	angular.module('eudoxusApp')
-	.controller('studentDeclaration2Ctrl', function($rootScope, $scope, generalUtility, studentService) {
+	.controller('studentDeclaration2Ctrl', function($rootScope, $scope, $anchorScroll, generalUtility, studentService) {
+
+		$anchorScroll();
 
 		$scope.declarationStep = 2;
 		$scope.courses = [];
