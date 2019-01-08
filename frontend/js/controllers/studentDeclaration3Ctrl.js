@@ -13,8 +13,6 @@
 
 		/* ================= On start ================= */
 
-		console.log("student-3");
-
 		console.log($rootScope.user.declaration);
 
 		for (courseId in $rootScope.user.declaration.books) {

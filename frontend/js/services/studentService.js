@@ -176,8 +176,6 @@
 				books: booksList
 			};
 
-			console.log(data);
-
 			return $http({
 				method: "POST",
 				url: url,

@@ -18,7 +18,6 @@
 
 		/* ================= On start ================= */
 
-		console.log("student-2");
 		console.log($rootScope.user.declaration);
 
 		studentService.getCoursesByDepartmentId($rootScope.user.declaration.departmentId).then(function(responseCourses) {
