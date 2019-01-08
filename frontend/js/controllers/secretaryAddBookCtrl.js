@@ -1,7 +1,7 @@
 (function() {
 
 	angular.module('eudoxusApp')
-	.controller('homeCtrl', function($rootScope, $scope, secretaryService) {
+	.controller('secretaryAddBookCtrl', function($rootScope, $scope, secretaryService) {
 
 
 	});

@@ -103,19 +103,16 @@
 		generalUtilityFactory.redirectToPreviousStep = function(step) {
 			if (step === 2) {
 				if (!$rootScope.user.declaration.universityId || !$rootScope.user.declaration.departmentId) {
-					console.log("no department");
 					window.location.href = "#!/student/declaration/1";
 				}
 			}
 			else if (step === 3) {
 				if ($rootScope.keyLength($rootScope.user.declaration.books) === 0) {
-					console.log("no books");
 					window.location.href = "#!/student/declaration/2";
 				}
 			}
 			else if (step === 4) {
 				if ($rootScope.keyLength($rootScope.user.declaration.books) === 0) {
-					console.log("no books");
 					window.location.href = "#!/student/declaration/2";
 				}
 			}
@@ -128,7 +125,6 @@
 		generalUtilityFactory.logout = function() {
 			delete localStorage.eudoxusJWT;
 			generalUtilityFactory.initUser();
-			console.log("Logged Out");
 			location.reload();
 		};
 
