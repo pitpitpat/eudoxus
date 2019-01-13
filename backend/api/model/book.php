@@ -129,5 +129,19 @@ class Book {
         return $data;
     }
 
+    public function getByCode() {
+        $query = "SELECT * FROM " . $this->table_name . 
+                 " WHERE code = ?";
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute([$this->code]);
+
+        $data = [
+			"books" => $stmt->fetchAll(PDO::FETCH_CLASS),
+			"count" => $stmt->rowCount()
+		];
+
+        return $data;
+    }
+
 }
 ?>
