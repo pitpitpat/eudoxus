@@ -1,4 +1,11 @@
-<div class="row justify-content-center pt-5">
+<nav class="pt-3" aria-label="breadcrumb">
+	<ol class="breadcrumb grey lighten-4">
+		<li class="breadcrumb-item"><a href="#!/home">Αρχική</a></li>
+		<li class="breadcrumb-item active">Είσοδος</li>
+	</ol>
+</nav>
+
+<div class="row justify-content-center pt-3">
 	<div class="col-md-5">
 		<div class="card">
 			<div class="card-header text-center">
@@ -7,18 +14,46 @@
 			<div class="card-body p-4">
 				<div class="container-fluid">
 					<div class="row">
+
+						<div class="col">
+							<h5>Είμαι:</h5>
+							<div class="custom-control custom-radio">
+							  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" ng-click="changeUserType('student')" checked>
+							  <label class="custom-control-label" for="defaultChecked">Φοιτητής</label>
+							</div>
+							<div class="custom-control custom-radio">
+							  <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" ng-click="changeUserType('secretary')">
+							  <label class="custom-control-label" for="defaultUnchecked">Γραμματεία</label>
+							</div>
+						</div>
 						<div class="col">
 							<form name="loginForm">
-								<div class="form-group mb-5">
-									<div class="form-label-group">
-										<label class="text-black-50 font-weight-bold mb-3" for="inputCode">Αριθμός Μητρώου</label>
-										<input ng-model="credentials.code" type="text" id="inputCode" class="form-control" required="required" autofocus="autofocus">
+								<div ng-if="userType=='student'">
+									<div class="form-group mb-5">
+										<div class="form-label-group">
+											<label class="text-black-50 font-weight-bold mb-3" for="inputCode">Αριθμός Μητρώου</label>
+											<input ng-model="studentCredentials.code" type="text" id="inputCode" class="form-control" required="required" autofocus="autofocus">
+										</div>
+									</div>
+									<div class="form-group mb-5">
+										<div class="form-label-group">
+											<label class="text-black-50 font-weight-bold mb-3" for="inputPassword">Κωδικός</label>
+											<input ng-model="studentCredentials.password" type="password" id="inputPassword" class="form-control" required="required">
+										</div>
 									</div>
 								</div>
-								<div class="form-group mb-5">
-									<div class="form-label-group">
-										<label class="text-black-50 font-weight-bold mb-3" for="inputPassword">Κωδικός</label>
-										<input ng-model="credentials.password" type="password" id="inputPassword" class="form-control" required="required">
+								<div ng-if="userType=='secretary'">
+									<div class="form-group mb-5">
+										<div class="form-label-group">
+											<label class="text-black-50 font-weight-bold mb-3" for="inputCode">Όνομα Χρήστη</label>
+											<input ng-model="secretaryCredentials.username" type="text" id="inputUsername" class="form-control" required="required" autofocus="autofocus">
+										</div>
+									</div>
+									<div class="form-group mb-5">
+										<div class="form-label-group">
+											<label class="text-black-50 font-weight-bold mb-3" for="inputPassword">Κωδικός</label>
+											<input ng-model="secretaryCredentials.password" type="password" id="inputPassword" class="form-control" required="required">
+										</div>
 									</div>
 								</div>
 								<button type="submit" ng-click="login()" ng-disabled="!loginForm.$valid" class="btn btn-primary btn-block">Είσοδος</button>

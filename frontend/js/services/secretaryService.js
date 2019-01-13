@@ -105,6 +105,36 @@
 			});
 		}
 
+		secretaryServiceFactory.getCoursesByDepartmentId = function(departmentId) {	// make by secretary
+			var endpoint = '/course/readByDep';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				departmentId: departmentId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		secretaryServiceFactory.getBookById = function(bookId) {	// make by secretary
+			var endpoint = '/book/readOne';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				book_id: bookId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
 		return secretaryServiceFactory;
 
 	});
