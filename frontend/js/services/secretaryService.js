@@ -10,7 +10,7 @@
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
 			data = {
-				code: credentials.code,
+				username: credentials.username,
 				password: credentials.password
 			};
 
@@ -120,12 +120,12 @@
 			});
 		}
 
-		secretaryServiceFactory.getBookById = function(bookId) {	// make by secretary
-			var endpoint = '/book/readOne';
+		secretaryServiceFactory.getBookByCode = function(bookCode) {	// make by secretary
+			var endpoint = '/book/readByCode';
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
 			var params = {
-				book_id: bookId
+				code: bookCode
 			};
 
 			return $http({
