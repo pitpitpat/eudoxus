@@ -97,7 +97,7 @@
 		});
 
 	})
-	.run(function ($rootScope, generalUtility, studentService) {
+	.run(function ($rootScope, generalUtility, studentService, secretaryService) {
 
 		generalUtility.initApp();
 
@@ -105,12 +105,13 @@
 		$rootScope.logout = generalUtility.logout;
 		$rootScope.goToLogin = generalUtility.goToLogin;
 		$rootScope.redirectToStudentHome = generalUtility.redirectToStudentHome;
+		$rootScope.redirectToSecretaryHome = generalUtility.redirectToSecretaryHome;
 
 		if (localStorage.eudoxusJWT) {
 			generalUtility.setJWT(localStorage.eudoxusJWT);
 			$rootScope.userPromise = generalUtility.getUser(false);
+			$rootScope.userPromise = generalUtility.getSecretaryUser(false);
 		}
 
 	});
-
 })();
