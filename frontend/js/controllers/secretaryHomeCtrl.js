@@ -1,9 +1,10 @@
 (function() {
 
 	angular.module('eudoxusApp')
-	.controller('homeCtrl', function($rootScope, $scope, secretaryService) {
+	.controller('secretaryHomeCtrl', function($rootScope, $scope, secretaryService) {
 
 
+		/* ================= On start ================= */
 	});
 
 })();

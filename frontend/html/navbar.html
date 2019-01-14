@@ -28,7 +28,7 @@
 					<a class="dropdown-item" href="#!/secretary/home">Αρχική</a>
 					<a class="dropdown-item" href="#">Παράμετροι Διανομής</a>
 					<a class="dropdown-item" href="#">Προγράμματα Σπουδών</a>
-					<a class="dropdown-item" href="#">Καταχώρηση Συγγραμμάτων</a>
+					<a class="dropdown-item" href="#!/secretary/addbook">Καταχώρηση Συγγραμμάτων</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -36,10 +36,11 @@
 				Εκδότες
 				</a>
 				<div class="dropdown-menu" aria-labelledby="publishersDropdown">
-					<a class="dropdown-item" href="#">Action</a>
-					<a class="dropdown-item" href="#">Another action</a>
-					<a class="dropdown-item" href="#">Something else here</a>
-					<a class="dropdown-item" href="#">Separated link</a>
+					<a class="dropdown-item" href="#">Αρχική</a>
+					<a class="dropdown-item" href="#">Συγγράματα</a>
+					<a class="dropdown-item" href="#">Αναφορές</a>
+					<a class="dropdown-item" href="#">Παραγγελίες</a>
+					<a class="dropdown-item" href="#">Σύστημα Πληρωμών</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -53,16 +54,17 @@
 				</div>
 			</li>
 		</ul>
-		<ul ng-if="isLoggedIn" class="navbar-nav">
+		<ul ng-if="isLoggedIn || secretLoggedIn" class="navbar-nav">
 			<li class="nav-item dropdown">
-				<a class="nav-link" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.name + " " + user.surname}}<i class="fas fa-user-circle ml-1"></i></a>
+				<a ng-if="isLoggedIn" class="nav-link" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.name + " " + user.surname}}<i class="fas fa-user-circle ml-1"></i></a>
+				<a ng-if="secretLoggedIn" class="nav-link" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{secretaryUser.name + " " + secretaryUser.surname}}<i class="fas fa-user-circle ml-1"></i></a>
 				<div class="dropdown-menu" aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#">Προφίλ</a>
 					<a class="dropdown-item" ng-click="logout()">Έξοδος</a>
 				</div>
 			</li>
 		</ul>
-		<ul ng-if="!isLoggedIn" class="navbar-nav">
+		<ul ng-if="!isLoggedIn && !secretLoggedIn" class="navbar-nav">
 			<li class="nav-item">
 				<a class="nav-link" ng-click="goToLogin()">Είσοδος</a>
 			</li>

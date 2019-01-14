@@ -1,0 +1,101 @@
+<!-- Secondary Navbar -->
+<div class="row secondary-nav justify-content-center bg-white">
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/home">
+		Αρχική
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none" href="#!/student/declaration/1">
+		Δήλωση
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none">
+		Προσφορά Συγγραμμάτων
+	</a>
+	<a class="col-md-3 secondary-nav-item py-2 text-center decoration-none active" href="#!/student/declaration/log">
+		Ιστορικό Δηλώσεων
+	</a>
+</div>
+
+<nav class="pt-3" aria-label="breadcrumb">
+	<ol class="breadcrumb grey lighten-4">
+		<li class="breadcrumb-item"><a href="#!/home">Αρχική</a></li>
+		<li class="breadcrumb-item"><a href="#!/student/home">Φοιτητής</a></li>
+		<li class="breadcrumb-item"><a href="#!/student/declaration/log">Ιστορικό Δηλώσεων</a></li>
+		<li class="breadcrumb-item active">Στοιχεία Δήλωσης {{declaration.semester + "ου Εξαμήνου"}}</li>
+	</ol>
+</nav>
+
+<div class="row justify-content-center">
+	<div class="col">
+		<div class="card">
+			<div class="card-header text-center">
+				<h5 class="mb-0">{{"Στοιχεία Δήλωσης " + declaration.semester + "ου Εξαμήνου"}}</h5>
+			</div>
+			<div class="card-body p-4">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-9"></div>
+						<div class="col-3 text-right">
+							<button class="btn btn-sm btn-primary rounded" data-toggle="modal" data-target="#mapModal"><i class="fas fa-map-marked-alt"></i></button>
+						</div>
+					</div>
+					<div class="row justify-content-center pt-2 pb-3">
+						<div class="col">
+							<div class="row justify-content-center">
+								<div class="col-md-8">
+									<div class="row mb-4" ng-repeat="book in declaration.books">
+										<div class="col fs-2 text-grey">
+											<div class="card">
+<!-- 												<div class="card-header">
+													{{ course.name + "  " + course.professor}}
+												</div> -->
+												<div class="card-body">
+													<div class="row mb-3">
+														<div class="col">
+															<div class="row">
+																<div class="col-7 pl-5">
+																	<div class="row mt-4">
+																		<div class="col">
+																			<i class="fas fa-book mr-3"></i>
+																			{{book.name}}
+																		</div>
+																	</div>
+																	<div class="row ml-4">
+																		<div class="col fs-0-9">
+																			{{"[" + book.code + "] Συγγραφέας: " + book.author + ", " + "Σελίδες: " + book.pages}}
+																		</div>
+																	</div>
+																</div>
+																<div class="col-5 fs-0-9">
+																	<div class="row mt-3">
+																		<div class="col text-center">
+																			<i class="fas fa-store-alt fs-2"></i>
+																			<br>Βιβλιοπωλείο Bookpath<br>
+																			Διεύθυνση: Σόλωνος 76, Αθήνα 106 80
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="col text-center">
+																			<button class="btn btn-sm btn-info rounded">Στοιχεία</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col text-center">
+									<button class="btn btn-primary rounded" ng-click="remindPIN()"  data-toggle="modal" data-target="#remindPINModal">Υπενθυμιση PIN</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

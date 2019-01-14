@@ -176,8 +176,6 @@
 				books: booksList
 			};
 
-			console.log(data);
-
 			return $http({
 				method: "POST",
 				url: url,
@@ -191,6 +189,36 @@
 
 			var params = {
 				student_id: studentId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		studentServiceFactory.getDeclarationById = function(declarationId) {
+			var endpoint = '/studentDeclaration/readOne';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				id: declarationId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		studentServiceFactory.getBooksByDeclarationId = function(declarationId) {
+			var endpoint = '/book/readByStDecl';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				declarationId: declarationId
 			};
 
 			return $http({

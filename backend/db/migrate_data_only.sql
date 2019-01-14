@@ -7,9 +7,9 @@ INSERT INTO courses (id, name, professor) VALUES (6, 'Εισαγωγή στην 
 INSERT INTO courses (id, name, professor) VALUES (7, 'Εισαγωγή στον Προγραμματισμό', 'Αυγουστής Σφακιανός');
 INSERT INTO courses (id, name, professor) VALUES (8, 'Εφαρμοσμένα Μαθηματικά', 'Κορνήλιος Αυγουστίνος');
 
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (1, 'Εκδόσεις Τζιόλα', 'ΧΑΡ. ΤΡΙΚΟΥΠΗ 16 (ΥΨΟΣ ΑΚΑΔΗΜΙΑΣ)', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'tziolas@gmail.com', '2105982435');
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (2, 'Εκδόσεις Κριτική', 'Νευροκοπίου 8', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'kritiki@gmail.com', '2105982109');
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (3, 'Εκδόσεις Γκιούρδας', 'ΣΕΡΓΙΟΥ ΠΑΤΡΙΑΡΧΟΥ 4', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'gkiourdas@gmail.com', '2105800435');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (1, 'Εκδόσεις Τζιόλα', 'ΧΑΡ. ΤΡΙΚΟΥΠΗ 16 (ΥΨΟΣ ΑΚΑΔΗΜΙΑΣ)', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'tziolas@gmail.com', '2105982435');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (2, 'Εκδόσεις Κριτική', 'Νευροκοπίου 8', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'kritiki@gmail.com', '2105982109');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (3, 'Εκδόσεις Γκιούρδας', 'ΣΕΡΓΙΟΥ ΠΑΤΡΙΑΡΧΟΥ 4', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'gkiourdas@gmail.com', '2105800435');
 
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (1, 1, 'Εποικοδομητικός Διάλογος στον Σύγχρονο Κόσμο', '0001', 'Κωνσταντίνος Κατακουζινός', 848);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (2, 1, 'Το Αποχετευτικό Σύστημα στο Βυζάντιο', '0002', 'Κωνσταντίνος Κατακουζινός', 338);
