@@ -13,19 +13,20 @@
 			</div>
 			<div class="card-body p-4">
 				<div class="container-fluid">
-					<div class="row">
-
+					<div class="row mb-3">
 						<div class="col">
-							<h5>Είμαι:</h5>
-							<div class="custom-control custom-radio">
+							<label class="text-black-50 font-weight-bold mr-3" for="inputCode">Είμαι:</label>
+							<div class="custom-control custom-radio d-inline mr-2">
 							  <input type="radio" class="custom-control-input" id="defaultChecked" name="defaultExampleRadios" ng-click="changeUserType('student')" checked>
 							  <label class="custom-control-label" for="defaultChecked">Φοιτητής</label>
 							</div>
-							<div class="custom-control custom-radio">
+							<div class="custom-control custom-radio d-inline">
 							  <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios" ng-click="changeUserType('secretary')">
 							  <label class="custom-control-label" for="defaultUnchecked">Γραμματεία</label>
 							</div>
 						</div>
+					</div>
+					<div class="row">
 						<div class="col">
 							<form name="loginForm">
 								<div ng-if="userType=='student'">

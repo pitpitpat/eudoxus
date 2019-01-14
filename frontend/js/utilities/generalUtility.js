@@ -150,7 +150,7 @@
 				$rootScope.secretaryUser.phone = response.data.phone
 				$rootScope.secretaryUser.personalEmail = response.data.personalEmail
 				$rootScope.secretaryUser.personalPhone = response.data.personalPhone
-				
+
 				return secretaryService.getDepartmentById($rootScope.secretaryUser.departmentId).then(function(response) {
 					$rootScope.secretaryUser.department.name = response.data.name;
 
