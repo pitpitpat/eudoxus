@@ -7,11 +7,15 @@
 
 		/* ================= On start ================= */
 
-		studentService.getDeclarationsByStudentId($rootScope.user.id).then(function(response) {
-			$scope.declarations = response.data;
-			$scope.declarations.reverse();
-			console.log(response.data);
-		});
+		if ($rootScope.isLoggedIn) {
+			studentService.getDeclarationsByStudentId($rootScope.user.id).then(function(response) {
+				$scope.declarations = response.data;
+				$scope.declarations.sort(function(a, b) {
+					return b.declaration.semester - a.declaration.semester;
+				});
+				console.log(response.data);
+			});
+		}
 
 	});
 

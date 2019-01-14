@@ -18,8 +18,6 @@
 
 		/* ================= On start ================= */
 
-		console.log("student-1");
-
 		studentService.getAllUniversities().then(function(response) {
 			$scope.universities = response.data.universities;
 		});

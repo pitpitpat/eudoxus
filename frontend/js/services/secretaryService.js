@@ -10,7 +10,7 @@
 			var url = $rootScope.eudoxusAPI + endpoint + ".php";
 
 			data = {
-				code: credentials.code,
+				username: credentials.username,
 				password: credentials.password
 			};
 
@@ -96,6 +96,36 @@
 
 			var params = {
 				secretaryId: secretaryId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		secretaryServiceFactory.getCoursesByDepartmentId = function(departmentId) {	// make by secretary
+			var endpoint = '/course/readByDep';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				departmentId: departmentId
+			};
+
+			return $http({
+				method: "GET",
+				url: url,
+				params: params
+			});
+		}
+
+		secretaryServiceFactory.getBookByCode = function(bookCode) {	// make by secretary
+			var endpoint = '/book/readByCode';
+			var url = $rootScope.eudoxusAPI + endpoint + ".php";
+
+			var params = {
+				code: bookCode
 			};
 
 			return $http({

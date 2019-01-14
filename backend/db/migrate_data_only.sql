@@ -7,9 +7,9 @@ INSERT INTO courses (id, name, professor) VALUES (6, 'Εισαγωγή στην 
 INSERT INTO courses (id, name, professor) VALUES (7, 'Εισαγωγή στον Προγραμματισμό', 'Αυγουστής Σφακιανός');
 INSERT INTO courses (id, name, professor) VALUES (8, 'Εφαρμοσμένα Μαθηματικά', 'Κορνήλιος Αυγουστίνος');
 
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (1, 'Εκδόσεις Τζιόλα', 'ΧΑΡ. ΤΡΙΚΟΥΠΗ 16 (ΥΨΟΣ ΑΚΑΔΗΜΙΑΣ)', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'tziolas@gmail.com', '2105982435');
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (2, 'Εκδόσεις Κριτική', 'Νευροκοπίου 8', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'kritiki@gmail.com', '2105982109');
-INSERT INTO shops (id, name, address, hours, email, phone) VALUES (3, 'Εκδόσεις Γκιούρδας', 'ΣΕΡΓΙΟΥ ΠΑΤΡΙΑΡΧΟΥ 4', 'Τρίτη - Πέμπτη - Παρασκευή: 10:00-20:00, Δευτέρα - Τετάρτη : 10:00-16:30', 'gkiourdas@gmail.com', '2105800435');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (1, 'Εκδόσεις Τζιόλα', 'ΧΑΡ. ΤΡΙΚΟΥΠΗ 16 (ΥΨΟΣ ΑΚΑΔΗΜΙΑΣ)', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'tziolas@gmail.com', '2105982435');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (2, 'Εκδόσεις Κριτική', 'Νευροκοπίου 8', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'kritiki@gmail.com', '2105982109');
+INSERT INTO shops (id, name, address, hours, email, phone) VALUES (3, 'Εκδόσεις Γκιούρδας', 'ΣΕΡΓΙΟΥ ΠΑΤΡΙΑΡΧΟΥ 4', 'Δευτέρα - Παρασκευή: 10:00-20:00', 'gkiourdas@gmail.com', '2105800435');
 
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (1, 1, 'Εποικοδομητικός Διάλογος στον Σύγχρονο Κόσμο', '0001', 'Κωνσταντίνος Κατακουζινός', 848);
 INSERT INTO books (id, course_id, name, code, author, pages) VALUES (2, 1, 'Το Αποχετευτικό Σύστημα στο Βυζάντιο', '0002', 'Κωνσταντίνος Κατακουζινός', 338);
@@ -109,13 +109,13 @@ INSERT INTO students (id, department_id, name, surname, code, password, email, p
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (16, 3, 'Συμεών', 'Σαρακάκης', '1115201500032', '16161', 'simeon@gmail.com', '6942587962', 8);
 INSERT INTO students (id, department_id, name, surname, code, password, email, phone, semester) VALUES (17, 3, 'Λουκάς', 'Σαρακάκης', '1115201500020', '17171', 'saraluke@gmail.com', '6955369872', 8);
 
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (1, 1, 1);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (2, 2, 1);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (3, 3, 2);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (4, 4, 4);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (5, 5, 4);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (6, 6, 5);
-INSERT INTO BooksShops (id, book_id, student_id) VALUES (7, 7, 5);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (1, 1, 1);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (2, 2, 1);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (3, 3, 2);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (4, 4, 4);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (5, 5, 4);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (6, 6, 5);
+INSERT INTO StudentBooks (id, book_id, student_id) VALUES (7, 7, 5);
 
 INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (1, '2018-11-16 12:15:00', 1, '123456789012', 1);
 INSERT INTO studentDeclaration (id, timestamp, student_id, code, semester) VALUES (2, '2018-11-15 12:25:00', 2, '123456789013', 7);
