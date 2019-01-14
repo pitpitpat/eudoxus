@@ -4,20 +4,25 @@
 	.controller('secretaryAddBookCtrl', function($rootScope, $scope, secretaryService) {
  
 		$scope.courses = $rootScope.secretaryUser.department.courses;
+		$scope.inputCode = '';
+
 
 		$scope.isHidden = true;
 		$scope.searchHidden = function(){
 			$scope.isHidden = !$scope.isHidden;
 		}
+		$scope.bookAdded = false;
+		$scope.addBook = function() {
+			$scope.bookAdded = !$scope.bookAdded;
+		}
 
-		console.log($scope.inputValue);
 		$scope.getBookByCode = function(){
-			secretaryService.getBookByCode(Number($scope.inputValue)).then(function(response){
-				console.log(Number($scope.inputValue));
+			secretaryService.getBookByCode($scope.inputCode).then(function(response){
 				$scope.books = response.data.books;
 				console.log(response.data);
 			});
 		}
+
 		/* ================= On start ================= */
 		
 
